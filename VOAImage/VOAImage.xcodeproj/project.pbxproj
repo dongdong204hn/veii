@@ -165,6 +165,8 @@
 		0A761C98172ED14000B2A609 /* IntroControll */ = {
 			isa = PBXGroup;
 			children = (
+				B034E2B91761D0FA002CA85A /* List */,
+				B034E2B81761D0E5002CA85A /* More */,
 				0A761C99172ED17B00B2A609 /* IntroControll.h */,
 				0A761C9A172ED17B00B2A609 /* IntroControll.m */,
 				0A761C9C172ED1D600B2A609 /* IntroModel.h */,
@@ -179,6 +181,20 @@
 				B0400FB7175F5536005E828A /* MyBottomView.xib */,
 			);
 			name = IntroControll;
+			sourceTree = "<group>";
+		};
+		B034E2B81761D0E5002CA85A /* More */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
+		B034E2B91761D0FA002CA85A /* List */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = List;
 			sourceTree = "<group>";
 		};
 		B0400FA5175F2506005E828A /* database */ = {
