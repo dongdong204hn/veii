@@ -30,6 +30,7 @@
     IntroModel *model5 = [[IntroModel alloc] initWithTitle:@"Example 5" description:@"5555555555" image:@"20130501_5.jpg"];
     
     IntroControll *test = [[IntroControll alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) pages:@[model1, model2, model3, model4, model5]];
+    test.topView.myDelegate = self;
     [test setDelegate:self];
     self.view = test;
     
@@ -58,5 +59,29 @@
 //    IntroModel *model = [[IntroModel alloc] initWithTitle:[NSString stringWithFormat:@"Example %d", index] description:[NSString stringWithFormat:@"%d%d", index, index] image:[NSString stringWithFormat:@"20130501_%d.jpg", index]];
 //    return model;
 //}
+
+#pragma mark - MyTopViewDelegate
+- (void)didListBtnPressed:(MyTopView *)myTopView {
+    NSLog(@"list");
+    KLViewController *myKlview = [KLViewController alloc];
+    [self presentModalViewController:myKlview animated:YES];
+}
+
+- (void)didMoreBtnPressed:(MyTopView *)myTopView {
+    NSLog(@"more");
+//    MoreViewController *myKlview = [[MoreViewController alloc] initWithNibName:@"MoreViewController" bundle:nil];
+//    [self presentModalViewController:myKlview animated:YES];
+    
+    moreView = (MoreView *)[[[NSBundle mainBundle] loadNibNamed:@"MoreView"
+                                                          owner:self
+                                                        options:nil] objectAtIndex:0];
+//    [moreView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 0)];
+    [moreView setFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:moreView];
+    
+//    [Constants beginAnimationWithName:@"SwitchTwo" duration:0.5f];
+//    [moreView setFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height)];
+//    [UIView commitAnimations];
+}
 
 @end

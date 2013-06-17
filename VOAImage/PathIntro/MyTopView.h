@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class MyTopView;
+
+@protocol MyTopViewDelegate <NSObject>
+@optional
+- (void)didListBtnPressed:(MyTopView *)myTopView ;
+- (void)didMoreBtnPressed:(MyTopView *)myTopView ;
+@end
+
+
 @interface MyTopView : UIView
+
+@property (nonatomic, assign) id <MyTopViewDelegate> myDelegate;
+
+- (IBAction)didListBtnPressed:(id)sender;
+- (IBAction)didMoreBtnPressed:(id)sender;
 
 @end

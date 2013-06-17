@@ -2,6 +2,7 @@
 #import "IntroView.h"
 #import "MyTopView.h"
 #import "MyBottomView.h"
+#import "KLViewController.h"
 
 #define kScreenWidth self.frame.size.width
 #define kScreenHeight self.frame.size.height
@@ -37,7 +38,8 @@
     MyBottomView *bottomView;
 }
 
-@property  (nonatomic, strong) id <IntroControllDelegate> delegate;
+@property (nonatomic, strong) id <IntroControllDelegate> delegate;
+@property (nonatomic, strong) MyTopView *topView;
 
 - (id)initWithFrame:(CGRect)frame pages:(NSArray*)pages;
 

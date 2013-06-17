@@ -9,6 +9,7 @@
 #import "MyTopView.h"
 
 @implementation MyTopView
+@synthesize myDelegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,5 +28,19 @@
     // Drawing code
 }
 */
+
+- (IBAction)didListBtnPressed:(id)sender
+{
+    if ([myDelegate respondsToSelector:@selector(didListBtnPressed:)]) {
+        [myDelegate didListBtnPressed:self];
+    }
+}
+
+- (IBAction)didMoreBtnPressed:(id)sender
+{
+    if ([myDelegate respondsToSelector:@selector(didMoreBtnPressed:)]) {
+        [myDelegate didMoreBtnPressed:self];
+    }
+}
 
 @end

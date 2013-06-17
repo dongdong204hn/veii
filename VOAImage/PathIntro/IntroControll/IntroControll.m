@@ -2,6 +2,7 @@
 
 @implementation IntroControll
 @synthesize delegate;
+@synthesize topView;
 
 - (id)initWithFrame:(CGRect)frame pages:(NSArray*)pagesArray
 {
@@ -247,5 +248,7 @@
     [self initShow];
 //    NSLog(@"222");
 }
+
+
 
 @end

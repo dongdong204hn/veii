@@ -18,7 +18,6 @@
         [titleLabel sizeToFit];
 //        [titleLabel setCenter:CGPointMake(frame.size.width/2, frame.size.height*3/5)];
         
-        
         descriptionLabel = [[UILabel alloc] init];
         [descriptionLabel setText:model.descriptionText];
         [descriptionLabel setFont:[UIFont systemFontOfSize:16]];
