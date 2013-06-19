@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class MoreView;
+
+@protocol MoreViewDelegate <NSObject>
+@optional
+- (void)didSettingBtnPressed;
+@end
+
 @interface MoreView : UIScrollView
+
+@property (nonatomic, strong) IBOutlet UIButton* backBtn;
+@property (nonatomic, assign) id <MoreViewDelegate> myDelegate;
+
+
+- (IBAction)didSettingBtnPressed:(id)sender;
 
 @end

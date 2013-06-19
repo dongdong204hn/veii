@@ -9,6 +9,8 @@
 #import "MoreView.h"
 
 @implementation MoreView
+@synthesize backBtn;
+@synthesize myDelegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,5 +29,12 @@
     // Drawing code
 }
 */
+
+- (IBAction)didSettingBtnPressed:(id)sender {
+    if ([myDelegate respondsToSelector:@selector(didSettingBtnPressed)]) {
+        [myDelegate didSettingBtnPressed];
+    }
+}
+
 
 @end

@@ -235,6 +235,10 @@
     }
 }
 
+- (void)scrollViewToImgIndex:(NSInteger) index {
+    [scrollView setContentOffset:CGPointMake((index - 1)*self.frame.size.width, 0) animated:YES];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scroll {
     [self initShow];
 //    NSLog(@"111");
