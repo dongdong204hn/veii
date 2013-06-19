@@ -59,11 +59,11 @@
     _slider.center = sliderCenter;
 }	
 
-- (void)dealloc {
-	_minImage.image = nil;
-	_maxImage.image = nil;
-    [super dealloc];
-}
+//- (void)dealloc {
+//	_minImage.image = nil;
+//	_maxImage.image = nil;
+//    [super dealloc];
+//}
 
 - (void)prepareForReuse {
 	_minImage.image = nil;

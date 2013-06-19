@@ -9,6 +9,9 @@
 #import "ListCell.h"
 
 @implementation ListCell
+@synthesize imgOne;
+@synthesize imgTwo;
+@synthesize imgThree;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

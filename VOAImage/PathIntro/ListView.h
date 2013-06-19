@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ListCell.h"
 
-@interface ListView : UIScrollView
+@class ListView;
+
+@protocol ListViewDelegate <NSObject>
+@optional
+- (void)didImgPressed:(NSInteger) newsIndex;
+@end
+
+@interface  ListView: UIScrollView <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) IBOutlet UIButton* backBtn;
+@property (nonatomic, assign) id <ListViewDelegate> myDelegate;
 
 @end

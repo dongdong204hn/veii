@@ -10,4 +10,8 @@
 
 @interface ListCell : UITableViewCell
 
+@property (nonatomic,strong) IBOutlet UIImageView *imgOne;
+@property (nonatomic,strong) IBOutlet UIImageView *imgTwo;
+@property (nonatomic,strong) IBOutlet UIImageView *imgThree;
+
 @end

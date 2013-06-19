@@ -101,12 +101,12 @@
 
 
 - (void)dealloc {
-    [_currentSpecifier release], _currentSpecifier = nil;
-	[_checkedItem release], _checkedItem = nil;
-	[_settingsReader release], _settingsReader = nil;
-    [_settingsStore release], _settingsStore = nil;
-	[_tableView release], _tableView = nil;
-    [super dealloc];
+//    [_currentSpecifier release], _currentSpecifier = nil;
+//	[_checkedItem release], _checkedItem = nil;
+//	[_settingsReader release], _settingsReader = nil;
+//    [_settingsStore release], _settingsStore = nil;
+//	[_tableView release], _tableView = nil;
+//    [super dealloc];
 }
 
 
@@ -149,7 +149,8 @@
     NSArray *values         = [_currentSpecifier multipleValues];
 	
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellValue] autorelease];
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellValue] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellValue];
 		cell.backgroundColor = [UIColor whiteColor];
     }
     [cell setBackgroundColor:[UIColor clearColor]];

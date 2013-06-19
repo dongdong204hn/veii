@@ -57,14 +57,16 @@
     BOOL                    isiPhone;//识别设备
 }
 
-@property (nonatomic, assign) IBOutlet id delegate;
-@property (nonatomic, retain) IASKSettingsReader *settingsReader;
-@property (nonatomic, retain) id<IASKSettingsStore> settingsStore;
+@property (nonatomic, strong) IBOutlet id delegate;
+@property (nonatomic, strong) IASKSettingsReader *settingsReader;
+@property (nonatomic, strong) id<IASKSettingsStore> settingsStore;
 @property (nonatomic, copy) NSString *file;
 @property (nonatomic, assign) BOOL showCreditsFooter;
 @property (nonatomic, assign) BOOL showDoneButton;
 
 - (void)synchronizeSettings;
-- (IBAction)dismiss:(id)sender;
+- (void)dismiss:(id)sender;
+
+- (IBAction) didBackBtnPressed:(id)sender;
 
 @end
