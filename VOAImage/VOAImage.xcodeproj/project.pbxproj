@@ -24,6 +24,8 @@
 		0A761CAB172EF75800B2A609 /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A761CAA172EF75800B2A609 /* IntroView.m */; };
 		0A761CAD172F036C00B2A609 /* image1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A761CAC172F036C00B2A609 /* image1@2x.jpg */; };
 		0A761CB3172F075900B2A609 /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A761CB2172F075900B2A609 /* shadow@2x.png */; };
+		B0238573177319C800393CCF /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0238572177319C800393CCF /* CommentView.m */; };
+		B0238575177319E500393CCF /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0238574177319E500393CCF /* CommentView.xib */; };
 		B0400FAB175F25BB005E828A /* voadata.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B0400FA8175F25BB005E828A /* voadata.sqlite */; };
 		B0400FAC175F25BB005E828A /* WORDS.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B0400FA9175F25BB005E828A /* WORDS.sqlite */; };
 		B0400FAD175F25BB005E828A /* favvoadata.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B0400FAA175F25BB005E828A /* favvoadata.sqlite */; };
@@ -126,6 +128,9 @@
 		0A761CAA172EF75800B2A609 /* IntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroView.m; path = IntroControll/IntroView.m; sourceTree = "<group>"; };
 		0A761CAC172F036C00B2A609 /* image1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image1@2x.jpg"; sourceTree = "<group>"; };
 		0A761CB2172F075900B2A609 /* shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow@2x.png"; sourceTree = "<group>"; };
+		B0238571177319C800393CCF /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
+		B0238572177319C800393CCF /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		B0238574177319E500393CCF /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		B0400FA8175F25BB005E828A /* voadata.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = voadata.sqlite; sourceTree = "<group>"; };
 		B0400FA9175F25BB005E828A /* WORDS.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = WORDS.sqlite; sourceTree = "<group>"; };
 		B0400FAA175F25BB005E828A /* favvoadata.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = favvoadata.sqlite; sourceTree = "<group>"; };
@@ -304,6 +309,7 @@
 		0A761C98172ED14000B2A609 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				B02385701773192100393CCF /* comment */,
 				B0AE327917705D6400511EE8 /* my */,
 				B034E2B91761D0FA002CA85A /* List */,
 				B034E2B81761D0E5002CA85A /* More */,
@@ -321,6 +327,16 @@
 				B0400FB7175F5536005E828A /* MyBottomView.xib */,
 			);
 			name = Class;
+			sourceTree = "<group>";
+		};
+		B02385701773192100393CCF /* comment */ = {
+			isa = PBXGroup;
+			children = (
+				B0238571177319C800393CCF /* CommentView.h */,
+				B0238572177319C800393CCF /* CommentView.m */,
+				B0238574177319E500393CCF /* CommentView.xib */,
+			);
+			name = comment;
 			sourceTree = "<group>";
 		};
 		B034E2B81761D0E5002CA85A /* More */ = {
@@ -654,6 +670,7 @@
 				B0AE32C1177143D800511EE8 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
 				B0AE32C2177143D800511EE8 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				B0AE32C3177143D800511EE8 /* IASKSpecifierValuesView.xib in Resources */,
+				B0238575177319E500393CCF /* CommentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +709,7 @@
 				B0AE32BB177143D800511EE8 /* IASKSwitch.m in Sources */,
 				B0AE32BC177143D800511EE8 /* IASKTextField.m in Sources */,
 				B0AE32C717714FE000511EE8 /* IASKAppSettingsViewController.m in Sources */,
+				B0238573177319C800393CCF /* CommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
