@@ -9,6 +9,7 @@
 #import "CommentView.h"
 
 @implementation CommentView
+@synthesize backBtn;
 
 - (id)initWithFrame:(CGRect)frame
 {

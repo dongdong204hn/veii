@@ -39,6 +39,7 @@
 
 @property (nonatomic, strong) id <IntroControllDelegate> delegate;
 @property (nonatomic, strong) MyTopView *topView;
+@property (nonatomic, strong) MyBottomView *bottomView;
 
 - (id)initWithFrame:(CGRect)frame pages:(NSArray*)pages;
 - (void)scrollViewToImgIndex:(NSInteger) index;

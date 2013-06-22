@@ -24,6 +24,8 @@
 		0A761CAB172EF75800B2A609 /* IntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A761CAA172EF75800B2A609 /* IntroView.m */; };
 		0A761CAD172F036C00B2A609 /* image1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A761CAC172F036C00B2A609 /* image1@2x.jpg */; };
 		0A761CB3172F075900B2A609 /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A761CB2172F075900B2A609 /* shadow@2x.png */; };
+		B01FD51E1773E9F40038BE54 /* PpausePressed.png in Resources */ = {isa = PBXBuildFile; fileRef = B01FD51C1773E9F40038BE54 /* PpausePressed.png */; };
+		B01FD51F1773E9F40038BE54 /* PpausePressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B01FD51D1773E9F40038BE54 /* PpausePressed@2x.png */; };
 		B0238573177319C800393CCF /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0238572177319C800393CCF /* CommentView.m */; };
 		B0238575177319E500393CCF /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0238574177319E500393CCF /* CommentView.xib */; };
 		B0400FAB175F25BB005E828A /* voadata.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B0400FA8175F25BB005E828A /* voadata.sqlite */; };
@@ -128,6 +130,8 @@
 		0A761CAA172EF75800B2A609 /* IntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroView.m; path = IntroControll/IntroView.m; sourceTree = "<group>"; };
 		0A761CAC172F036C00B2A609 /* image1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image1@2x.jpg"; sourceTree = "<group>"; };
 		0A761CB2172F075900B2A609 /* shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow@2x.png"; sourceTree = "<group>"; };
+		B01FD51C1773E9F40038BE54 /* PpausePressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PpausePressed.png; sourceTree = "<group>"; };
+		B01FD51D1773E9F40038BE54 /* PpausePressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PpausePressed@2x.png"; sourceTree = "<group>"; };
 		B0238571177319C800393CCF /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		B0238572177319C800393CCF /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
 		B0238574177319E500393CCF /* CommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
@@ -309,8 +313,8 @@
 		0A761C98172ED14000B2A609 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				B02385701773192100393CCF /* comment */,
 				B0AE327917705D6400511EE8 /* my */,
+				B02385701773192100393CCF /* comment */,
 				B034E2B91761D0FA002CA85A /* List */,
 				B034E2B81761D0E5002CA85A /* More */,
 				0A761C99172ED17B00B2A609 /* IntroControll.h */,
@@ -393,6 +397,8 @@
 				0A761CB2172F075900B2A609 /* shadow@2x.png */,
 				B0400FBB175F73AB005E828A /* playRecord.png */,
 				B0400FBC175F73AB005E828A /* playRecord@2x.png */,
+				B01FD51C1773E9F40038BE54 /* PpausePressed.png */,
+				B01FD51D1773E9F40038BE54 /* PpausePressed@2x.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -671,6 +677,8 @@
 				B0AE32C2177143D800511EE8 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				B0AE32C3177143D800511EE8 /* IASKSpecifierValuesView.xib in Resources */,
 				B0238575177319E500393CCF /* CommentView.xib in Resources */,
+				B01FD51E1773E9F40038BE54 /* PpausePressed.png in Resources */,
+				B01FD51F1773E9F40038BE54 /* PpausePressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

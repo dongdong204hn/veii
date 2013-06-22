@@ -9,6 +9,7 @@
 #import "MyBottomView.h"
 
 @implementation MyBottomView
+@synthesize myDelegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,5 +28,17 @@
     // Drawing code
 }
 */
+
+- (IBAction)didCommBtnPressed:(id)sender {
+    if ([myDelegate respondsToSelector:@selector(didCommBtnPressed:)]) {
+        [myDelegate didCommBtnPressed:self];
+    }
+}
+
+- (IBAction)didShareBtnPressed:(id)sender {
+    if ([myDelegate respondsToSelector:@selector(didShareBtnPressed:)]) {
+        [myDelegate didShareBtnPressed:self];
+    }
+}
 
 @end

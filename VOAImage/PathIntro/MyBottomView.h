@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class MyBottomView;
+
+@protocol MyBottomViewDelegate <NSObject>
+@optional
+- (void)didCommBtnPressed:(MyBottomView *)myBottomView ;
+- (void)didShareBtnPressed:(MyBottomView *)myBottomView ;
+@end
+
 @interface MyBottomView : UIView
+
+@property (nonatomic, assign) id <MyBottomViewDelegate> myDelegate;
+
+- (IBAction)didCommBtnPressed:(id)sender;
+- (IBAction)didShareBtnPressed:(id)sender;
 
 @end

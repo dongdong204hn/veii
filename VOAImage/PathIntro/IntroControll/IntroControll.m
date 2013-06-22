@@ -3,6 +3,7 @@
 @implementation IntroControll
 @synthesize delegate;
 @synthesize topView;
+@synthesize bottomView;
 
 - (id)initWithFrame:(CGRect)frame pages:(NSArray*)pagesArray
 {

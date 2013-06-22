@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentView : UIView
+@interface CommentView : UIScrollView
+
+@property (nonatomic, strong) IBOutlet UIButton* backBtn;
 
 @end
