@@ -229,7 +229,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">关于</string>
+								<string key="IBUINormalTitle">账号</string>
 								<reference key="IBUIHighlightedTitleColor" ref="950693431"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -319,6 +319,7 @@
 						<string key="NSFrame">{{0, 162}, {320, 298}}</string>
 						<reference key="NSSuperview" ref="299086410"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>

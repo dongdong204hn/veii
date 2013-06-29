@@ -24,7 +24,7 @@
     
     IntroModel *model2 = [[IntroModel alloc] initWithTitle:@"Example 2" description:@"Several sample texts in Old, Middle, Early Modern, and Modern English are provided here for practice, reference, and reading." image:@"20130501_2.jpg"];
     
-    IntroModel *model3 = [[IntroModel alloc] initWithTitle:@"Example 3" description:@"The Tempest is the first play in the First Folio edition (see the signature) even though it is a later play (namely 1610) than Hamlet (1600), for example. The first page is reproduced here" image:@"20130501_3.jpg"];
+    IntroModel *model3 = [[IntroModel alloc] initWithTitle:@"Example 3" description:@"The Tempest is the first play in the First Folio edition (see the signature) even though it is a later play (namely 1610) than Hamlet (1600), for example. The first page is reproduced here." image:@"20130501_3.jpg"];
     
     IntroModel *model4 = [[IntroModel alloc] initWithTitle:@"Example 4" description:@"4444444444." image:@"20130501_4.jpg"];
     
@@ -153,19 +153,27 @@
  */
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+//    scrollView set
     NSLog(@"offsety:%f", scrollView.contentOffset.y);
     if (scrollView.contentOffset.y < -[[UIScreen mainScreen] bounds].size.height * 0.2f) {
         downMoreView = YES;
+//        [Constants beginAnimationWithName:@"SwitchOne" duration:1.0f];
+        [UIScrollView beginAnimations:@"SwitchOne" context:nil];
+        [UIScrollView setAnimationDuration:1.0f];
+        [UIScrollView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [scrollView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 0)];
+        [UIScrollView commitAnimations];
+        downMoreView = NO;
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (downMoreView) {
 //        [self backBtnPressed];
-        [Constants beginAnimationWithName:@"SwitchOne" duration:1.0f];
-        [scrollView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 0)];
-        [UIView commitAnimations];
-        downMoreView = NO;
+//        [Constants beginAnimationWithName:@"SwitchOne" duration:1.0f];
+//        [scrollView setFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 0)];
+//        [UIView commitAnimations];
+//        downMoreView = NO;
     }
 }
 

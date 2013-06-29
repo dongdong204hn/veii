@@ -1,3 +1,8 @@
+//
+//  IntroControll.m
+//  VOAImage
+
+
 #import <UIKit/UIKit.h>
 #import "IntroView.h"
 #import "MyTopView.h"
@@ -14,6 +19,9 @@
 //- (IntroModel *)catchFirstIntro: (NSInteger) index;
 @end
 
+/**
+ *  主界面主展示视图
+ */
 @interface IntroControll : UIView<UIScrollViewDelegate> {
     id <IntroControllDelegate> delegate;
     

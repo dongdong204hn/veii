@@ -1,9 +1,60 @@
 #import "IntroControll.h"
+//#import <QuartzCore/QuartzCore.h>
+//#import <CoreGraphics/CoreGraphics.h>
+
+static const float kVPadding = 5.0f;
+static const float kHPadding = 10.0f;
+static const float kUpperPartRate = 0.75f;
 
 @implementation IntroControll
 @synthesize delegate;
 @synthesize topView;
 @synthesize bottomView;
+
+
+- (void)drawRect:(CGRect)rect {
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+//    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+//    CGContextFillRect(context, rect);
+//    
+//    CGPoint points[2];
+//    points[0] = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect) + kUpperPartRate * rect.size.height);
+//    points[1] = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect) + kUpperPartRate * rect.size.height);
+//    
+//    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+//    CGContextStrokeLineSegments(context, points, 2);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    //    CGFloat colors[] = {
+    //        0x2f/255.0f, 0x2f/255.0f, 0x2f/255.0f, 1.0f,
+    //        0x12/255.0f, 0x12/255.0f, 0x12/255.0f, 1.0f
+    //    };
+    
+    /*voa的黑红*/
+    //    CGFloat colors[] = { //设置分享框下边的颜色
+    //        0/255.0f, 0/255.0f, 0.f/255.0f, 1.0f,
+    //        198/255.0f, 18/255.0f, 0/255.0f, 1.0f
+    //    };
+    
+    CGFloat colors[] = { //设置分享框下边的颜色
+        100/255.0f, 100/255.0f, 100/255.0f, 1.0f,
+        2/255.0f, 2/255.0f, 2/255.0f, 1.0f
+    };
+    
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, colors, NULL, 2);
+//    CGContextDrawLinearGradient(context, gradient,
+//                                CGPointMake(CGRectGetMidX(rect),
+//                                            CGRectGetMinY(rect) + kUpperPartRate * rect.size.height),
+//                                CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect)), 0);
+    CGContextDrawLinearGradient(context, gradient,
+                                CGPointMake(CGRectGetMinX(rect),
+                                            CGRectGetMinY(rect)),
+                                CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect)), 0);
+    CGColorSpaceRelease(colorSpace);
+}
 
 - (id)initWithFrame:(CGRect)frame pages:(NSArray*)pagesArray
 {

@@ -81,7 +81,7 @@
 #pragma mark Table View Delegate Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 130.f;
+    return 70.f;
 }
 
 - (void)tableView:(UITableView *)tableView

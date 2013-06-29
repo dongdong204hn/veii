@@ -2,8 +2,8 @@
 #import "IntroModel.h"
 
 @interface IntroView : UIView {
-    UILabel *titleLabel;
-    UILabel *descriptionLabel;
+    UITextView *titleLabel;
+    UITextView *descriptionLabel;
 }
 
 //@property (nonatomic, retain) UILabel *titleLabel;

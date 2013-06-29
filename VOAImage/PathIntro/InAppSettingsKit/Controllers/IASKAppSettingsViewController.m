@@ -175,6 +175,7 @@ CGRect IASKCGRectSwap(CGRect rect);
 
 - (void)viewWillAppear:(BOOL)animated {
 	[self.tableView reloadData];
+    self.tableView.style == UITableViewStyleGrouped ? NSLog(@"yes"): NSLog(@"no");
     //    [self.navigationController.navigationBar setTintColor:[UIColor redColor]];
 	self.navigationItem.rightBarButtonItem = nil;
     self.navigationController.delegate = self;

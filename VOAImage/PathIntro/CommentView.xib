@@ -196,7 +196,7 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="59886291"/>
-								<object class="NSCustomResource" key="IBUINormalImage" id="959777420">
+								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">playRecord.png</string>
 								</object>
@@ -215,14 +215,13 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">user</string>
+								<string key="IBUINormalTitle">头像</string>
 								<reference key="IBUIHighlightedTitleColor" ref="728017302"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="59886291"/>
-								<reference key="IBUINormalImage" ref="959777420"/>
 								<reference key="IBUIFontDescription" ref="585516240"/>
 								<reference key="IBUIFont" ref="112933449"/>
 							</object>

@@ -86,7 +86,6 @@
 								<string key="NSFrame">{{102, -1}, {117, 45}}</string>
 								<reference key="NSSuperview" ref="563761485"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -147,7 +146,7 @@
 				<reference key="NSNextKeyView" ref="563761485"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MCAwIDAgMAA</bytes>
+					<bytes key="NSRGB">MC45NTY4NjI3NDUxIDAuOTI1NDkwMTk2MSAwLjg1MDk4MDM5MjIgMAA</bytes>
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
@@ -157,7 +156,7 @@
 				<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 				<bool key="IBUIBouncesZoom">NO</bool>
 				<int key="IBUIStyle">1</int>
-				<int key="IBUISeparatorStyle">1</int>
+				<int key="IBUISeparatorStyle">2</int>
 				<object class="NSColor" key="IBUISeparatorColor">
 					<int key="NSColorSpace">2</int>
 					<bytes key="NSRGB">MC4yOTgwMzkyMTU3IDAuNTM3MjU0OTAyIDAuNjU0OTAxOTYwOAA</bytes>
@@ -316,7 +315,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">26</int>
+			<int key="maxID">35</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -325,35 +324,14 @@
 					<string key="className">IASKAppSettingsViewController</string>
 					<string key="superclassName">UITableViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>didBackBtnPressed:</string>
-							<string>dismiss:</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
+						<string key="NS.key.0">didBackBtnPressed:</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>didBackBtnPressed:</string>
-							<string>dismiss:</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">didBackBtnPressed:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">dismiss:</string>
-								<string key="candidateClassName">id</string>
-							</object>
+						<string key="NS.key.0">didBackBtnPressed:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">didBackBtnPressed:</string>
+							<string key="candidateClassName">id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
