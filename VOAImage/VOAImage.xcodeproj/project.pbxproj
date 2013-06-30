@@ -1002,6 +1002,7 @@
 		0A761C93172EAC5900B2A609 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathIntro/VOAImage-Prefix.pch";
 				INFOPLIST_FILE = "PathIntro/VOAImage-Info.plist";
@@ -1014,6 +1015,7 @@
 		0A761C94172EAC5900B2A609 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMPRESS_PNG_FILES = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathIntro/VOAImage-Prefix.pch";
 				INFOPLIST_FILE = "PathIntro/VOAImage-Info.plist";
