@@ -53,7 +53,7 @@
 					<object class="IBUIButton" id="213129552">
 						<reference key="NSNextResponder" ref="340382768"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{60, 44}</string>
+						<string key="NSFrame">{{0, 2}, {66, 40}}</string>
 						<reference key="NSSuperview" ref="340382768"/>
 						<reference key="NSNextKeyView" ref="245475593"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -91,7 +91,7 @@
 					<object class="IBUIImageView" id="245475593">
 						<reference key="NSNextResponder" ref="340382768"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{62, 0}, {1, 44}}</string>
+						<string key="NSFrame">{{70, 0}, {1, 44}}</string>
 						<reference key="NSSuperview" ref="340382768"/>
 						<reference key="NSNextKeyView" ref="1071953342"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -308,14 +308,14 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bar.png">{16, 16}</string>
-			<string key="iyuba.png">{16, 16}</string>
-			<string key="lineVert.png">{16, 16}</string>
-			<string key="list.png">{16, 16}</string>
-			<string key="listPres.png">{16, 16}</string>
-			<string key="mainName.png">{16, 16}</string>
-			<string key="more.png">{16, 16}</string>
-			<string key="morePres.png">{16, 16}</string>
+			<string key="bar.png">{320, 44}</string>
+			<string key="iyuba.png">{66, 39}</string>
+			<string key="lineVert.png">{1, 27}</string>
+			<string key="list.png">{33, 30}</string>
+			<string key="listPres.png">{33, 30}</string>
+			<string key="mainName.png">{71, 14}</string>
+			<string key="more.png">{37, 19}</string>
+			<string key="morePres.png">{37, 19}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

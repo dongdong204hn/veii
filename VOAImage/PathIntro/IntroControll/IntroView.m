@@ -37,16 +37,18 @@
 //        descriptionLabel.frame = CGRectMake((self.frame.size.width-s.width)/2, titleLabel.frame.origin.y+titleLabel.frame.size.height+4,s.width, s.height);
         
 //        //three lines height
-        CGSize three = [@"1 \n 2 \n 3 \n 4 \n 5 \n 6 \n 7" sizeWithFont:descriptionLabel.font constrainedToSize:CGSizeMake(frame.size.width-25, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize four = [@"1 \n 2 \n 3 \n 4" sizeWithFont:descriptionLabel.font constrainedToSize:CGSizeMake(frame.size.width-25, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+        
+        CGSize seven = [@"1 \n 2 \n 3 \n 4 \n 5 \n 6 \n 7" sizeWithFont:descriptionLabel.font constrainedToSize:CGSizeMake(frame.size.width-25, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
 //
 //        descriptionLabel.frame = CGRectMake((self.frame.size.width-s.width)/2, titleLabel.frame.origin.y+titleLabel.frame.size.height+4,s.width, MIN(s.height, three.height));
         
-        descriptionLabel.frame = CGRectMake((self.frame.size.width-s.width)/2, frame.size.height-MIN(s.height, three.height)-25, s.width + 25, MIN(s.height, three.height));
+        descriptionLabel.frame = CGRectMake((self.frame.size.width-s.width)/2, frame.size.height-MIN(MAX(four.height, s.height), seven.height)-25, s.width + 25, MIN(MAX(four.height, s.height), seven.height));
         [descriptionLabel setContentOffset:CGPointMake(0, 10)];
         
 //        NSLog(@"%f", s.height);
 //        [titleLabel setCenter:CGPointMake(50, frame.size.height-MIN(s.height, three.height)-80)];
-        titleLabel.frame = CGRectMake(10, frame.size.height-MIN(s.height, three.height)-45, t.width + 25, 20);
+        titleLabel.frame = CGRectMake(10, frame.size.height-MIN(MAX(four.height, s.height), seven.height)-45, t.width + 25, 20);
         [titleLabel setContentSize:CGSizeMake(t.width + 25, 20)];
         [titleLabel setContentOffset:CGPointMake(0, 10)]; 
         [self addSubview:titleLabel];
@@ -71,12 +73,12 @@
         [defBtn setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"desc@2x" ofType:@"png"]] forState:UIControlStateNormal];
         [defBtn setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"descPres@2x" ofType:@"png"]] forState:UIControlStateHighlighted];
         [defBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [defBtn setFrame:CGRectMake(frame.size.width - 40, frame.size.height-MIN(s.height, three.height)-35, 20, 20)];
+        [defBtn setFrame:CGRectMake(frame.size.width - 40, frame.size.height-MIN(MAX(four.height, s.height), seven.height)-35, 20, 20)];
 //        [defBtn setFrame:CGRectMake(0, 0, 20, 30)];
         
-        [enBtn setCenter:CGPointMake(frame.size.width - 120, frame.size.height-MIN(s.height, three.height)-35)];
-        [chBtn setCenter:CGPointMake(frame.size.width - 80, frame.size.height-MIN(s.height, three.height)-35)];
-        [defBtn setCenter:CGPointMake(frame.size.width - 40, frame.size.height-MIN(s.height, three.height)-35)];
+        [enBtn setCenter:CGPointMake(frame.size.width - 120, frame.size.height-MIN(MAX(four.height, s.height), seven.height)-35)];
+        [chBtn setCenter:CGPointMake(frame.size.width - 80, frame.size.height-MIN(MAX(four.height, s.height), seven.height)-35)];
+        [defBtn setCenter:CGPointMake(frame.size.width - 40, frame.size.height-MIN(MAX(four.height, s.height), seven.height)-35)];
         
         
         [self addSubview:descriptionLabel];
