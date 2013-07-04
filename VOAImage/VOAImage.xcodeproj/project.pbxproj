@@ -201,6 +201,14 @@
 		B0F37E3A177C5E9400548646 /* favPres@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F37E31177C5E9400548646 /* favPres@2x.png */; };
 		B0F37E3B177C5E9400548646 /* listBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F37E32177C5E9400548646 /* listBar@2x.png */; };
 		B0F37E3C177C5E9400548646 /* listBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F37E33177C5E9400548646 /* listBg@2x.png */; };
+		B0F4E37E17850728002D4704 /* commTitle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F4E37C17850728002D4704 /* commTitle@2x.png */; };
+		B0F4E38017850758002D4704 /* nowVoice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F4E37F17850758002D4704 /* nowVoice@2x.png */; };
+		B0F4E38317850786002D4704 /* commTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F4E38117850786002D4704 /* commTitle.png */; };
+		B0F4E38417850786002D4704 /* nowVoice.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F4E38217850786002D4704 /* nowVoice.png */; };
+		B0F4E38817850CC2002D4704 /* database.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E38717850CC2002D4704 /* database.m */; };
+		B0F4E38B17850D83002D4704 /* VOAView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F4E38A17850D83002D4704 /* VOAView.m */; };
+		B0F4E39317851E86002D4704 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F4E39217851E86002D4704 /* libsqlite3.dylib */; };
+		B0F4E39517851F83002D4704 /* PlausibleDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0F4E39417851F83002D4704 /* PlausibleDatabase.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -430,6 +438,16 @@
 		B0F37E31177C5E9400548646 /* favPres@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favPres@2x.png"; sourceTree = "<group>"; };
 		B0F37E32177C5E9400548646 /* listBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listBar@2x.png"; sourceTree = "<group>"; };
 		B0F37E33177C5E9400548646 /* listBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "listBg@2x.png"; sourceTree = "<group>"; };
+		B0F4E37C17850728002D4704 /* commTitle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "commTitle@2x.png"; sourceTree = "<group>"; };
+		B0F4E37F17850758002D4704 /* nowVoice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nowVoice@2x.png"; sourceTree = "<group>"; };
+		B0F4E38117850786002D4704 /* commTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commTitle.png; sourceTree = "<group>"; };
+		B0F4E38217850786002D4704 /* nowVoice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nowVoice.png; sourceTree = "<group>"; };
+		B0F4E38617850CC2002D4704 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
+		B0F4E38717850CC2002D4704 /* database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = database.m; sourceTree = "<group>"; };
+		B0F4E38917850D83002D4704 /* VOAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOAView.h; sourceTree = "<group>"; };
+		B0F4E38A17850D83002D4704 /* VOAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOAView.m; sourceTree = "<group>"; };
+		B0F4E39217851E86002D4704 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../Desktop/1/libsqlite3.dylib; sourceTree = "<group>"; };
+		B0F4E39417851F83002D4704 /* PlausibleDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlausibleDatabase.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,12 +455,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F4E39317851E86002D4704 /* libsqlite3.dylib in Frameworks */,
 				B0F37DF3177C0E6100548646 /* QuartzCore.framework in Frameworks */,
 				B0AE32C517714A4F00511EE8 /* MessageUI.framework in Frameworks */,
 				B0855839176EB3E600247C66 /* Social.framework in Frameworks */,
 				0A761C79172EAC5900B2A609 /* UIKit.framework in Frameworks */,
 				0A761C7B172EAC5900B2A609 /* Foundation.framework in Frameworks */,
 				0A761C7D172EAC5900B2A609 /* CoreGraphics.framework in Frameworks */,
+				B0F4E39517851F83002D4704 /* PlausibleDatabase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +472,7 @@
 		0A761C6C172EAC5900B2A609 = {
 			isa = PBXGroup;
 			children = (
+				B0F4E39217851E86002D4704 /* libsqlite3.dylib */,
 				B0F37DF2177C0E6100548646 /* QuartzCore.framework */,
 				B022517E177A785000402AD9 /* icon.png */,
 				B022517F177A785000402AD9 /* icon@2x.png */,
@@ -472,6 +493,7 @@
 		0A761C77172EAC5900B2A609 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0F4E39417851F83002D4704 /* PlausibleDatabase.framework */,
 				B0AE32C417714A4F00511EE8 /* MessageUI.framework */,
 				B0855838176EB3E600247C66 /* Social.framework */,
 				0A761C78172EAC5900B2A609 /* UIKit.framework */,
@@ -484,6 +506,7 @@
 		0A761C7E172EAC5900B2A609 /* PathIntro */ = {
 			isa = PBXGroup;
 			children = (
+				B0F4E38517850C63002D4704 /* Database */,
 				B0AE3283177143B800511EE8 /* Reference */,
 				0A761C98172ED14000B2A609 /* Class */,
 				0A761C87172EAC5900B2A609 /* AppDelegate.h */,
@@ -526,6 +549,8 @@
 		B0225182177ADDF600402AD9 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				B0F4E38917850D83002D4704 /* VOAView.h */,
+				B0F4E38A17850D83002D4704 /* VOAView.m */,
 				0A761C9C172ED1D600B2A609 /* IntroModel.h */,
 				0A761C9D172ED1D600B2A609 /* IntroModel.m */,
 			);
@@ -838,6 +863,7 @@
 		B0F37DF4177C380800548646 /* png */ = {
 			isa = PBXGroup;
 			children = (
+				B0F4E37A17850712002D4704 /* comm */,
 				B076DF2E1781239B00816DA3 /* set */,
 				B0F37E2A177C5DDB00548646 /* list */,
 				B0F37E29177C5DD600548646 /* main */,
@@ -927,6 +953,26 @@
 				B0F37E33177C5E9400548646 /* listBg@2x.png */,
 			);
 			name = list;
+			sourceTree = "<group>";
+		};
+		B0F4E37A17850712002D4704 /* comm */ = {
+			isa = PBXGroup;
+			children = (
+				B0F4E38117850786002D4704 /* commTitle.png */,
+				B0F4E38217850786002D4704 /* nowVoice.png */,
+				B0F4E37F17850758002D4704 /* nowVoice@2x.png */,
+				B0F4E37C17850728002D4704 /* commTitle@2x.png */,
+			);
+			name = comm;
+			sourceTree = "<group>";
+		};
+		B0F4E38517850C63002D4704 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B0F4E38617850CC2002D4704 /* database.h */,
+				B0F4E38717850CC2002D4704 /* database.m */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1139,6 +1185,10 @@
 				B0C59E741782D667001F1804 /* chPres.png in Resources */,
 				B0C59E751782D667001F1804 /* ch.png in Resources */,
 				B0C59E761782D667001F1804 /* bar.png in Resources */,
+				B0F4E37E17850728002D4704 /* commTitle@2x.png in Resources */,
+				B0F4E38017850758002D4704 /* nowVoice@2x.png in Resources */,
+				B0F4E38317850786002D4704 /* commTitle.png in Resources */,
+				B0F4E38417850786002D4704 /* nowVoice.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1178,6 +1228,8 @@
 				B0AE32BC177143D800511EE8 /* IASKTextField.m in Sources */,
 				B0AE32C717714FE000511EE8 /* IASKAppSettingsViewController.m in Sources */,
 				B0238573177319C800393CCF /* CommentView.m in Sources */,
+				B0F4E38817850CC2002D4704 /* database.m in Sources */,
+				B0F4E38B17850D83002D4704 /* VOAView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,10 +1307,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMPRESS_PNG_FILES = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathIntro/VOAImage-Prefix.pch";
 				INFOPLIST_FILE = "PathIntro/VOAImage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = VOAImage;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1268,10 +1325,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMPRESS_PNG_FILES = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PathIntro/VOAImage-Prefix.pch";
 				INFOPLIST_FILE = "PathIntro/VOAImage-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = VOAImage;
 				WRAPPER_EXTENSION = app;
 			};
