@@ -4,7 +4,8 @@
 
 @property (nonatomic, strong) NSString *titleText;
 @property (nonatomic, strong) NSString *descriptionText;
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSString *imageName;
+//@property (nonatomic, strong) UIImage *image;
 
 - (id) initWithTitle:(NSString*)title description:(NSString*)desc image:(NSString*)imageText;
 

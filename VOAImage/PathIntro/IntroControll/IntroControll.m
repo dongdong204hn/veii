@@ -193,11 +193,14 @@ static const float kUpperPartRate = 0.75f;
         currentPhotoNum = scrollPhotoNumber;
         
         //backgroundImage1.image = currentPhotoNum != 0 ? [(IntroModel*)[pages objectAtIndex:currentPhotoNum-1] image] : nil;
-        backgroundImage1.image = [(IntroModel*)[pages objectAtIndex:arrayIndex] image];
+        
+        [backgroundImage1 setImageWithURL: [NSURL URLWithString:[(IntroModel*)[pages objectAtIndex:arrayIndex] imageName]] ];
+//        backgroundImage1.image = [(IntroModel*)[pages objectAtIndex:arrayIndex] image];
         NSInteger myHeight = backgroundImage1.image.size.height * kScreenWidth / backgroundImage1.image.size.width;
         [backgroundImage1 setFrame:CGRectMake(0, 20 + kSideViewHeight + (scrollView.frame.size.height - myHeight)/2, kScreenWidth, myHeight)];
         [backgroundImage1 setFrame:CGRectMake(0, 20 + kSideViewHeight, kScreenWidth, myHeight)];
-        backgroundImage2.image = arrayIndex+1 != [pages count] ? [(IntroModel*)[pages objectAtIndex:arrayIndex+1] image] : nil;
+        [backgroundImage2 setImageWithURL: [NSURL URLWithString:arrayIndex+1 != [pages count] ? [(IntroModel*)[pages objectAtIndex:arrayIndex+1] imageName] : nil] ];
+//        backgroundImage2.image = arrayIndex+1 != [pages count] ? [(IntroModel*)[pages objectAtIndex:arrayIndex+1] image] : nil;
         if (backgroundImage2.image) {
             myHeight = backgroundImage2.image.size.height * kScreenWidth / backgroundImage2.image.size.width;
             [backgroundImage2 setFrame:CGRectMake(0, 20 + kSideViewHeight, kScreenWidth, myHeight)];
@@ -206,7 +209,6 @@ static const float kUpperPartRate = 0.75f;
     }
     
     float offset =  scrollView.contentOffset.x - (currentPhotoNum * self.frame.size.width);
-    
     
     //left
     if(offset < 0) {

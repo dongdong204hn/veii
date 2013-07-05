@@ -7,6 +7,7 @@
 #import "IntroView.h"
 #import "MyTopView.h"
 #import "MyBottomView.h"
+#import "UIImageView+WebCache.h"
 
 #define kScreenWidth self.frame.size.width
 #define kScreenHeight self.frame.size.height

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "RegexKitLite.h"
 //#import "VOAContent.h"
 //#import "VOAFav.h"
 @interface VOAView : NSObject
@@ -52,7 +53,7 @@
 - (BOOL) insert;
 
 //全赋值初始化VOAView对象
-- (id) initWithVoaId: (NSInteger)voaid paraid: (NSInteger)paraid title: (NSString *)title title_Cn: (NSString *)title_Cn descCn: (NSString *)descCn pic: (NSString *)pic  creatTime: (NSString *)creatTime readCount: (NSInteger)readCount isRead: (NSInteger)isRead isDownload: (NSInteger)isDownload userid: (NSInteger)userid sound: (NSString *)sound userName: (NSString *)userName userImgUrl: (NSString *)userImgUrl ;
+- (id)initWithVoaId: (NSInteger)voaid paraid: (NSInteger)paraid title: (NSString *)title title_Cn: (NSString *)title_Cn descCn: (NSString *)descCn pic: (NSString *)pic  creatTime: (NSString *)creatTime readCount: (NSInteger)readCount isRead: (NSInteger)isRead isDownload: (NSInteger)isDownload userid: (NSInteger)userid sound: (NSString *)sound userName: (NSString *)userName userImgUrl: (NSString *)userImgUrl ;
 
 + (NSMutableArray *) findNew:(NSInteger)offset newVoas:(NSMutableArray *) newVoas;
 

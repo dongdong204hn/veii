@@ -27,7 +27,7 @@
 @synthesize userName = _userName;
 @synthesize userImgUrl = _userImgUrl;
 
-- (id) initWithVoaId: (NSInteger)voaid paraid: (NSInteger)paraid title: (NSString *)title title_Cn: (NSString *)title_Cn descCn: (NSString *)descCn pic: (NSString *)pic  creatTime: (NSString *)creatTime readCount: (NSInteger)readCount isRead: (NSInteger)isRead isDownload: (NSInteger)isDownload userid: (NSInteger)userid sound: (NSString *)sound userName: (NSString *)userName userImgUrl: (NSString *)userImgUrl {
+- (id)initWithVoaId: (NSInteger)voaid paraid: (NSInteger)paraid title: (NSString *)title title_Cn: (NSString *)title_Cn descCn: (NSString *)descCn pic: (NSString *)pic  creatTime: (NSString *)creatTime readCount: (NSInteger)readCount isRead: (NSInteger)isRead isDownload: (NSInteger)isDownload userid: (NSInteger)userid sound: (NSString *)sound userName: (NSString *)userName userImgUrl: (NSString *)userImgUrl {
 	if (self = [super init]) {
 		_voaid = voaid;
         _paraid = paraid;
@@ -90,7 +90,6 @@
         NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
         NSString *descCn = [rs objectForColumn:@"descCn"];
         NSString *pic = [rs objectForColumn:@"pic"];
-        NSString *creatTime = [rs objectForColumn:@"creatTime"];
         NSInteger readCount = [rs intForColumn:@"readCount"];
         NSInteger isRead = [rs intForColumn:@"isRead"];
         NSInteger isDownload = [rs intForColumn:@"isDownload"];
@@ -98,18 +97,62 @@
         NSString *sound = [rs objectForColumn:@"sound"];
         NSString *userName = [rs objectForColumn:@"userName"];
         NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
-
-//        NSString *regEx = @"\\S+";
-//        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
-//            creatTime = matchOne;
-//            break;
-//        }
-//        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
-//        NSString *title_jp = [rs objectForColumn:@"title_jp"];
-        //		NSString *collect = [rs objectForColumn:@"collect"];
+        
+        NSString *creatTime;
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
         
         VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
 //		[voaViews addObject:voaView];
+		[newVoas addObject:voaView];
+	}
+	//关闭数据库
+	[rs close];
+    //	[dataBase close];//
+	return newVoas;
+}
+
+/**
+ *  获取指定voaid的数据存入数组newVoas
+ */
++ (NSArray *) findByVoaid:(NSInteger)voaid  newVoas:(NSMutableArray *) newVoas{
+	PLSqliteDatabase *dataBase = [database setup];
+	
+	id<PLResultSet> rs;
+    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa ORDER BY paraid desc where voaid = %d;", voaid];
+	rs = [dataBase executeQuery:findSql];
+    //    NSLog(@"sql:%@",findSql);
+	//定义一个数组存放所有信息
+    //	NSMutableArray *voaViews = [[NSMutableArray alloc] init];
+    
+	//把rs中的数据库信息遍历到voaViews数组
+	while ([rs next]) {
+        NSInteger voaid = [rs intForColumn:@"voaid"];
+        NSInteger paraid = [rs intForColumn:@"paraid"];
+        NSString *title = [rs objectForColumn:@"title"];
+        NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
+        NSString *descCn = [rs objectForColumn:@"descCn"];
+        NSString *pic = [rs objectForColumn:@"pic"];
+        NSInteger readCount = [rs intForColumn:@"readCount"];
+        NSInteger isRead = [rs intForColumn:@"isRead"];
+        NSInteger isDownload = [rs intForColumn:@"isDownload"];
+        NSInteger userid = [rs intForColumn:@"userid"];
+        NSString *sound = [rs objectForColumn:@"sound"];
+        NSString *userName = [rs objectForColumn:@"userName"];
+        NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
+        
+        NSString *creatTime;
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
+        
+        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
+        //		[voaViews addObject:voaView];
 		[newVoas addObject:voaView];
 	}
 	//关闭数据库
@@ -138,7 +181,6 @@
         NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
         NSString *descCn = [rs objectForColumn:@"descCn"];
         NSString *pic = [rs objectForColumn:@"pic"];
-        NSString *creatTime = [rs objectForColumn:@"creatTime"];
         NSInteger readCount = [rs intForColumn:@"readCount"];
         NSInteger isRead = [rs intForColumn:@"isRead"];
         NSInteger isDownload = [rs intForColumn:@"isDownload"];
@@ -147,14 +189,12 @@
         NSString *userName = [rs objectForColumn:@"userName"];
         NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
         
-        //        NSString *regEx = @"\\S+";
-        //        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
-        //            creatTime = matchOne;
-        //            break;
-        //        }
-        //        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
-        //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
-        //		NSString *collect = [rs objectForColumn:@"collect"];
+        NSString *creatTime;
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
         
         VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
 		[myArray addObject:voaView];
@@ -186,7 +226,6 @@
         NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
         NSString *descCn = [rs objectForColumn:@"descCn"];
         NSString *pic = [rs objectForColumn:@"pic"];
-        NSString *creatTime = [rs objectForColumn:@"creatTime"];
         NSInteger readCount = [rs intForColumn:@"readCount"];
         NSInteger isRead = [rs intForColumn:@"isRead"];
         NSInteger isDownload = [rs intForColumn:@"isDownload"];
@@ -195,14 +234,12 @@
         NSString *userName = [rs objectForColumn:@"userName"];
         NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
         
-        //        NSString *regEx = @"\\S+";
-        //        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
-        //            creatTime = matchOne;
-        //            break;
-        //        }
-        //        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
-        //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
-        //		NSString *collect = [rs objectForColumn:@"collect"];
+        NSString *creatTime;
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
         
         VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];//接收返回值的变量会释放这块内存
 	}
