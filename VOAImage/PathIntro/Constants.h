@@ -5,7 +5,7 @@
 //  Created by song zhao on 12-4-27.
 //  Copyright (c) 2012年 buaa. All rights reserved.
 //
-
+#import "NetTest.h"
 //定义一些字符串
 extern NSString * const kAppOne;
 extern NSString * const kAppTwo;
@@ -42,6 +42,8 @@ extern NSString * const kFeedbackFour;
 extern NSString * const kFeedbackFive;
 extern NSString * const kFeedbacksix;
 extern NSString * const kFeedbackSeven;
+extern NSString * const kFeedback8;
+extern NSString * const kFeedback9;
 
 extern NSString * const kHelpOne;
 
@@ -83,6 +85,7 @@ extern NSString * const kRegThirte;
 extern NSString * const kRegFourte;
 extern NSString * const kRegFivete;
 extern NSString * const kRegSixte;
+extern NSString * const kReg17;
 
 extern NSString * const kColOne;
 extern NSString * const kColTwo;
@@ -199,6 +202,9 @@ extern NSString * const kDisinfFour;
 extern NSString * const kDisinfFive;
 extern NSString * const kDisinfSix;
 extern NSString * const kDisinfSeven;
+
+extern NSString * const kExample1;
+extern NSString * const kExample2;
 
 extern BOOL isPlayPage;
 

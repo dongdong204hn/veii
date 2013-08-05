@@ -106,7 +106,8 @@ CGRect IASKCGRectSwap(CGRect rect);
 
 #pragma mark standard view controller methods
 - (IBAction) didBackBtnPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (id)init {
@@ -122,7 +123,7 @@ CGRect IASKCGRectSwap(CGRect rect);
         
         // If set to YES, will add a DONE button at the right of the navigation bar
         _showDoneButton = YES;
-		
+		self.delegate = self;
 		if ([self isPad]) {
 			self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
 		}

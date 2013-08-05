@@ -10,6 +10,8 @@
 
 @implementation MyBottomView
 @synthesize myDelegate;
+@synthesize userName;
+@synthesize userImg;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,6 +40,12 @@
 - (IBAction)didShareBtnPressed:(id)sender {
     if ([myDelegate respondsToSelector:@selector(didShareBtnPressed:)]) {
         [myDelegate didShareBtnPressed:self];
+    }
+}
+
+- (IBAction)didTrumpetBtnPressed:(id)sender {
+    if ([myDelegate respondsToSelector:@selector(didTrumpetBtnPressed:)]) {
+        [myDelegate didTrumpetBtnPressed:sender];
     }
 }
 

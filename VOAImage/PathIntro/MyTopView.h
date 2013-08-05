@@ -14,6 +14,7 @@
 @optional
 - (void)didListBtnPressed:(MyTopView *)myTopView ;
 - (void)didMoreBtnPressed:(MyTopView *)myTopView ;
+- (void)didIyubaBtnPressed:(MyTopView *)myTopView ;
 @end
 
 
@@ -23,5 +24,6 @@
 
 - (IBAction)didListBtnPressed:(id)sender;
 - (IBAction)didMoreBtnPressed:(id)sender;
+- (IBAction)didIyubaBtnPressed:(id)sender;
 
 @end

@@ -19,7 +19,7 @@
 @synthesize descCn = _descCn;
 @synthesize pic = _pic;
 @synthesize creatTime = _creatTime;
-@synthesize readCount = _readCount;
+//@synthesize readCount = _readCount;
 @synthesize isRead = _isRead;
 @synthesize isDownload = _isDownload;
 @synthesize userid = _userid;
@@ -27,7 +27,11 @@
 @synthesize userName = _userName;
 @synthesize userImgUrl = _userImgUrl;
 
-- (id) initWithVoaId: (NSInteger)voaid paraid: (NSInteger)paraid title: (NSString *)title title_Cn: (NSString *)title_Cn descCn: (NSString *)descCn pic: (NSString *)pic  creatTime: (NSString *)creatTime readCount: (NSInteger)readCount isRead: (NSInteger)isRead isDownload: (NSInteger)isDownload userid: (NSInteger)userid sound: (NSString *)sound userName: (NSString *)userName userImgUrl: (NSString *)userImgUrl {
+//<<<<<<< HEADs
+- (id) initWithVoaId: (NSInteger)voaid paraid: (NSInteger)paraid title: (NSString *)title title_Cn: (NSString *)title_Cn descCn: (NSString *)descCn pic: (NSString *)pic  creatTime: (NSString *)creatTime isRead: (NSInteger)isRead isDownload: (NSInteger)isDownload userid: (NSInteger)userid sound: (NSString *)sound userName: (NSString *)userName userImgUrl: (NSString *)userImgUrl{
+//=======
+//- (id)initWithVoaId: (NSInteger)voaid paraid: (NSInteger)paraid title: (NSString *)title title_Cn: (NSString *)title_Cn descCn: (NSString *)descCn pic: (NSString *)pic  creatTime: (NSString *)creatTime readCount: (NSInteger)readCount isRead: (NSInteger)isRead isDownload: (NSInteger)isDownload userid: (NSInteger)userid sound: (NSString *)sound userName: (NSString *)userName userImgUrl: (NSString *)userImgUrl {
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
 	if (self = [super init]) {
 		_voaid = voaid;
         _paraid = paraid;
@@ -36,7 +40,7 @@
         _descCn = descCn;
         _pic = pic;
         _creatTime = creatTime;
-        _readCount = readCount;
+//        _readCount = readCount;
         _isRead = isRead;
         _isDownload = isDownload;
         _userid = userid;
@@ -55,9 +59,9 @@
     PLSqliteDatabase *dataBase = [database setup];
     //    const char *myDate = [date UTF8String];//NSString转变为字符数组
     //    date 显示为 2011-11-01%2012:12:12
-	NSString *findSql = [NSString stringWithFormat:@"insert into voa(voaid,Title,Title_cn,DescCn,pic,creatTime,readCount,isRead,isDownload,userid,sound,userName,userImgUrl) values(%d,\"%@\",\"%@\",\"%@\",\"%@\",\"%@\",%d,%d,%d,%d,\"%@\",\"%@\",\"%@\") ;",self.voaid,self.title,self.title_Cn,self.descCn,self.pic,self.creatTime,self.readCount,self.isRead,self.isDownload,self.userid,self.sound,self.userName,self.userImgUrl];
-    
-	if([dataBase executeUpdate:findSql]) {
+	NSString *insertSql = [NSString stringWithFormat:@"insert into voa(voaid,paraid,Title,Title_cn,DescCn,pic,creatTime,isRead,isDownload,userid,sound,userName,userImgUrl) values(%d,%d,\"%@\",\"%@\",\"%@\",\"%@\",\"%@\",%d,%d,%d,\"%@\",\"%@\",\"%@\") ;",self.voaid,self.paraid,self.title,self.title_Cn,self.descCn,self.pic,self.creatTime,self.isRead,self.isDownload,self.userid,self.sound,self.userName,self.userImgUrl];
+//    NSLog(@"insertSql:%@", insertSql);
+	if([dataBase executeUpdate:insertSql]) {
 //        NSLog(@"--success!");
         return YES;
 	}
@@ -72,12 +76,13 @@
 /**
  *  获取小于offset的十个数据存入数组newVoas
  */
-+ (NSArray *) findNew:(NSInteger)offset  newVoas:(NSMutableArray *) newVoas{
++ (NSInteger) findNew:(NSInteger)offset  newVoas:(NSMutableArray *) newVoas{
 	PLSqliteDatabase *dataBase = [database setup];
 	
 	id<PLResultSet> rs;
-    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa ORDER BY voaid desc LIMIT 10 offset %d;",offset];
+    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa ORDER BY voaid desc,paraid LIMIT 10 offset %d;",offset];
 	rs = [dataBase executeQuery:findSql];
+    NSInteger addNum = 0;
 //    NSLog(@"sql:%@",findSql);
 	//定义一个数组存放所有信息
 //	NSMutableArray *voaViews = [[NSMutableArray alloc] init];
@@ -90,46 +95,101 @@
         NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
         NSString *descCn = [rs objectForColumn:@"descCn"];
         NSString *pic = [rs objectForColumn:@"pic"];
-        NSString *creatTime = [rs objectForColumn:@"creatTime"];
-        NSInteger readCount = [rs intForColumn:@"readCount"];
+//<<<<<<< HEAD
+        NSString *creatTime;
+//        NSInteger readCount = [rs intForColumn:@"readCount"];
+//=======
+//        NSInteger readCount = [rs intForColumn:@"readCount"];
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
         NSInteger isRead = [rs intForColumn:@"isRead"];
         NSInteger isDownload = [rs intForColumn:@"isDownload"];
         NSInteger userid = [rs intForColumn:@"userid"];
         NSString *sound = [rs objectForColumn:@"sound"];
         NSString *userName = [rs objectForColumn:@"userName"];
         NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
+//<<<<<<< HEAD
 
+//=======
+//        
+//        NSString *creatTime;
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
+        
+        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
+		[newVoas addObject:voaView];
+        addNum++;
+	}
+	//关闭数据库
+	[rs close];
+    //	[dataBase close];//
+	return addNum;
+}
+
+//<<<<<<< HEAD
++ (NSInteger) findNewByVoaid: (NSInteger)voaid myArray:(NSMutableArray *) myArray {
+//=======
+/**
+ *  获取指定voaid的数据存入数组newVoas
+ */
+//+ (NSArray *) findByVoaid:(NSInteger)voaid  newVoas:(NSMutableArray *) newVoas{
+//	PLSqliteDatabase *dataBase = [database setup];
+//	
+//	id<PLResultSet> rs;
+//    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa ORDER BY paraid desc where voaid = %d;", voaid];
+//	rs = [dataBase executeQuery:findSql];
+//    //    NSLog(@"sql:%@",findSql);
+//	//定义一个数组存放所有信息
+//    //	NSMutableArray *voaViews = [[NSMutableArray alloc] init];
+//    
+//	//把rs中的数据库信息遍历到voaViews数组
+//	while ([rs next]) {
+//        NSInteger voaid = [rs intForColumn:@"voaid"];
+//        NSInteger paraid = [rs intForColumn:@"paraid"];
+//        NSString *title = [rs objectForColumn:@"title"];
+//        NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
+//        NSString *descCn = [rs objectForColumn:@"descCn"];
+//        NSString *pic = [rs objectForColumn:@"pic"];
+//        NSInteger readCount = [rs intForColumn:@"readCount"];
+//        NSInteger isRead = [rs intForColumn:@"isRead"];
+//        NSInteger isDownload = [rs intForColumn:@"isDownload"];
+//        NSInteger userid = [rs intForColumn:@"userid"];
+//        NSString *sound = [rs objectForColumn:@"sound"];
+//        NSString *userName = [rs objectForColumn:@"userName"];
+//        NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
+//        
+//        NSString *creatTime;
 //        NSString *regEx = @"\\S+";
 //        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
 //            creatTime = matchOne;
 //            break;
 //        }
-//        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
-//        NSString *title_jp = [rs objectForColumn:@"title_jp"];
-        //		NSString *collect = [rs objectForColumn:@"collect"];
-        
-        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
-//		[voaViews addObject:voaView];
-		[newVoas addObject:voaView];
-	}
-	//关闭数据库
-	[rs close];
-    //	[dataBase close];//
-	return newVoas;
-}
-
-+ (NSArray *) findNewByCategory:(NSInteger)offset category:(NSInteger)category myArray:(NSMutableArray *) myArray{
+//        
+//        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
+//        //		[voaViews addObject:voaView];
+//		[newVoas addObject:voaView];
+//	}
+//	//关闭数据库
+//	[rs close];
+//    //	[dataBase close];//
+//	return newVoas;
+//}
+//
+//+ (NSArray *) findNewByCategory:(NSInteger)offset category:(NSInteger)category myArray:(NSMutableArray *) myArray{
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
 	PLSqliteDatabase *dataBase = [database setup];
-	
 	id<PLResultSet> rs;
-    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa where category = %d ORDER BY voaid desc LIMIT 10 offset %d;",category,offset];
+    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa where voaid <= %d ORDER BY voaid desc,paraid LIMIT 10;",voaid];
 	rs = [dataBase executeQuery:findSql];
 //    NSLog(@"sql:%@",findSql);
     
     
 	//定义一个数组存放所有信息
 //	NSMutableArray *voaViews = [[NSMutableArray alloc] init];
-	
+	NSInteger addNum = 0;
 	//把rs中的数据库信息遍历到voaViews数组
 	while ([rs next]) {
         NSInteger voaid = [rs intForColumn:@"voaid"];
@@ -138,8 +198,12 @@
         NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
         NSString *descCn = [rs objectForColumn:@"descCn"];
         NSString *pic = [rs objectForColumn:@"pic"];
-        NSString *creatTime = [rs objectForColumn:@"creatTime"];
-        NSInteger readCount = [rs intForColumn:@"readCount"];
+//<<<<<<< HEAD
+        NSString *creatTime;
+        //        NSInteger readCount = [rs intForColumn:@"readCount"];
+//=======
+//        NSInteger readCount = [rs intForColumn:@"readCount"];
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
         NSInteger isRead = [rs intForColumn:@"isRead"];
         NSInteger isDownload = [rs intForColumn:@"isDownload"];
         NSInteger userid = [rs intForColumn:@"userid"];
@@ -147,34 +211,171 @@
         NSString *userName = [rs objectForColumn:@"userName"];
         NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
         
-        //        NSString *regEx = @"\\S+";
-        //        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
-        //            creatTime = matchOne;
-        //            break;
-        //        }
-        //        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
-        //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
-        //		NSString *collect = [rs objectForColumn:@"collect"];
+//<<<<<<< HEAD
+//=======
+//        NSString *creatTime;
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
         
-        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
+        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
 		[myArray addObject:voaView];
+        addNum++;
 		
 	}
 	//关闭数据库
 	[rs close];
     //	[dataBase close];//
-	return myArray;
+	return addNum;
+}
+
++ (NSInteger) findNewByVoaidParaid: (NSInteger)voaid paraid:(NSInteger)paraid myArray:(NSMutableArray *) myArray {
+	PLSqliteDatabase *dataBase = [database setup];
+	id<PLResultSet> rs;
+    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa where (voaid = %d and paraid>=%d) or (voaid < %d)  ORDER BY voaid desc,paraid LIMIT 10;",voaid,paraid,voaid];
+	rs = [dataBase executeQuery:findSql];
+    //    NSLog(@"sql:%@",findSql);
+    
+    
+	//定义一个数组存放所有信息
+    //	NSMutableArray *voaViews = [[NSMutableArray alloc] init];
+	NSInteger addNum = 0;
+	//把rs中的数据库信息遍历到voaViews数组
+	while ([rs next]) {
+        NSInteger voaid = [rs intForColumn:@"voaid"];
+        NSInteger paraid = [rs intForColumn:@"paraid"];
+        NSString *title = [rs objectForColumn:@"title"];
+        NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
+        NSString *descCn = [rs objectForColumn:@"descCn"];
+        NSString *pic = [rs objectForColumn:@"pic"];
+        NSString *creatTime;
+        //        NSInteger readCount = [rs intForColumn:@"readCount"];
+        NSInteger isRead = [rs intForColumn:@"isRead"];
+        NSInteger isDownload = [rs intForColumn:@"isDownload"];
+        NSInteger userid = [rs intForColumn:@"userid"];
+        NSString *sound = [rs objectForColumn:@"sound"];
+        NSString *userName = [rs objectForColumn:@"userName"];
+        NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
+        
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
+        
+        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
+		[myArray addObject:voaView];
+        addNum++;
+		
+	}
+	//关闭数据库
+	[rs close];
+    //	[dataBase close];//
+	return addNum;
+}
+
++ (NSInteger) findNewBelowVoaid: (NSInteger)voaid myArray:(NSMutableArray *) myArray offset:(NSInteger)offset{
+	PLSqliteDatabase *dataBase = [database setup];
+	id<PLResultSet> rs;
+    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa where voaid <= %d ORDER BY voaid desc,paraid LIMIT 10 offset %d;", voaid, offset];
+	rs = [dataBase executeQuery:findSql];
+    //    NSLog(@"sql:%@",findSql);
+    
+    
+	//定义一个数组存放所有信息
+    //	NSMutableArray *voaViews = [[NSMutableArray alloc] init];
+	NSInteger addNum = 0;
+	//把rs中的数据库信息遍历到voaViews数组
+	while ([rs next]) {
+        NSInteger voaid = [rs intForColumn:@"voaid"];
+        NSInteger paraid = [rs intForColumn:@"paraid"];
+        NSString *title = [rs objectForColumn:@"title"];
+        NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
+        NSString *descCn = [rs objectForColumn:@"descCn"];
+        NSString *pic = [rs objectForColumn:@"pic"];
+        NSString *creatTime;
+        //        NSInteger readCount = [rs intForColumn:@"readCount"];
+        NSInteger isRead = [rs intForColumn:@"isRead"];
+        NSInteger isDownload = [rs intForColumn:@"isDownload"];
+        NSInteger userid = [rs intForColumn:@"userid"];
+        NSString *sound = [rs objectForColumn:@"sound"];
+        NSString *userName = [rs objectForColumn:@"userName"];
+        NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
+        
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
+        
+        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
+		[myArray addObject:voaView];
+        addNum++;
+		
+	}
+	//关闭数据库
+	[rs close];
+    //	[dataBase close];//
+	return addNum;
+}
+
++ (NSInteger) findNewBelowVoaidParaid: (NSInteger)voaid paraid:(NSInteger)paraid myArray:(NSMutableArray *) myArray offset:(NSInteger)offset{
+	PLSqliteDatabase *dataBase = [database setup];
+	id<PLResultSet> rs;
+    NSString *findSql = [NSString stringWithFormat:@"SELECT * FROM voa where (voaid = %d and paraid>=%d) or (voaid < %d)  ORDER BY voaid desc,paraid LIMIT 10 offset %d;", voaid, paraid, voaid, offset];
+	rs = [dataBase executeQuery:findSql];
+    //    NSLog(@"sql:%@",findSql);
+    
+    
+	//定义一个数组存放所有信息
+    //	NSMutableArray *voaViews = [[NSMutableArray alloc] init];
+	NSInteger addNum = 0;
+	//把rs中的数据库信息遍历到voaViews数组
+	while ([rs next]) {
+        NSInteger voaid = [rs intForColumn:@"voaid"];
+        NSInteger paraid = [rs intForColumn:@"paraid"];
+        NSString *title = [rs objectForColumn:@"title"];
+        NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
+        NSString *descCn = [rs objectForColumn:@"descCn"];
+        NSString *pic = [rs objectForColumn:@"pic"];
+        NSString *creatTime;
+        //        NSInteger readCount = [rs intForColumn:@"readCount"];
+        NSInteger isRead = [rs intForColumn:@"isRead"];
+        NSInteger isDownload = [rs intForColumn:@"isDownload"];
+        NSInteger userid = [rs intForColumn:@"userid"];
+        NSString *sound = [rs objectForColumn:@"sound"];
+        NSString *userName = [rs objectForColumn:@"userName"];
+        NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
+        
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
+        
+        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
+		[myArray addObject:voaView];
+        addNum++;
+		
+	}
+	//关闭数据库
+	[rs close];
+    //	[dataBase close];//
+	return addNum;
 }
 
 /**
  *  根据voaid获取对象的方法
  */
-+ (id) find:(NSInteger ) voaid{
++ (id) find:(NSInteger)voaid paraid: (NSInteger)paraid{
 	PLSqliteDatabase *dataBase = [database setup];
 //    const char *myVoaid = [voaid UTF8String];//NSString转变为字符数组
 //    int myVoaid = voaid.intValue;//NSString转变为整型
 	id<PLResultSet> rs;
-	NSString *findSql = [NSString stringWithFormat:@"select * FROM voa WHERE voaid = %d", voaid];
+	NSString *findSql = [NSString stringWithFormat:@"select * FROM voa WHERE voaid = %d and paraid = %d", voaid, paraid];
 	rs = [dataBase executeQuery:findSql];
 	
 	VOAView *voaView = nil;
@@ -186,8 +387,12 @@
         NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
         NSString *descCn = [rs objectForColumn:@"descCn"];
         NSString *pic = [rs objectForColumn:@"pic"];
-        NSString *creatTime = [rs objectForColumn:@"creatTime"];
-        NSInteger readCount = [rs intForColumn:@"readCount"];
+//<<<<<<< HEAD
+        NSString *creatTime;
+        //        NSInteger readCount = [rs intForColumn:@"readCount"];
+//=======
+//        NSInteger readCount = [rs intForColumn:@"readCount"];
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
         NSInteger isRead = [rs intForColumn:@"isRead"];
         NSInteger isDownload = [rs intForColumn:@"isDownload"];
         NSInteger userid = [rs intForColumn:@"userid"];
@@ -195,16 +400,17 @@
         NSString *userName = [rs objectForColumn:@"userName"];
         NSString *userImgUrl = [rs objectForColumn:@"userImgUrl"];
         
-        //        NSString *regEx = @"\\S+";
-        //        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
-        //            creatTime = matchOne;
-        //            break;
-        //        }
-        //        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
-        //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
-        //		NSString *collect = [rs objectForColumn:@"collect"];
+//<<<<<<< HEAD
+//=======
+//        NSString *creatTime;
+//>>>>>>> 416dbaff103c1c4eac6d20b8d1b53791ec71a232
+        NSString *regEx = @"\\S+";
+        for(NSString *matchOne in [[rs objectForColumn:@"creatTime"] componentsMatchedByRegex:regEx]) {
+            creatTime = matchOne;
+            break;
+        }
         
-        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime readCount:readCount isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];//接收返回值的变量会释放这块内存
+        voaView = [[VOAView alloc] initWithVoaId:voaid paraid:paraid title:title title_Cn:title_Cn descCn:descCn pic:pic creatTime:creatTime isRead:isRead isDownload:isDownload userid:userid sound:sound userName:userName userImgUrl:userImgUrl];
 	}
 	else {
 //		UIAlertView *errAlert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Can not find!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -214,6 +420,32 @@
 	[rs close];
 //	[dataBase close];//
     return voaView;
+}
+
+/**
+ *  消除所有新闻的正在下载标记
+ */
+- (void)updateImgSound
+{
+    PLSqliteDatabase *dataBase = [database setup];
+    NSString *findSql = [NSString stringWithFormat:@"update voa set sound = \"%@\", userid = %d, userName = \"%@\", userImgUrl = \"%@\" WHERE voaid = %d and paraid = %d;", _sound, _userid, _userName, _userImgUrl, _voaid, _paraid];
+    NSLog(@"findSql:%@", findSql);
+    if([dataBase executeUpdate:findSql]) {
+        NSLog(@"--success!");
+    }
+}
+
+/**
+ *  消除所有新闻的正在下载标记
+ */
+- (void)updateByVoaid
+{
+    PLSqliteDatabase *dataBase = [database setup];
+    NSString *findSql = [NSString stringWithFormat:@"update voa set title = \"%@\", title_cn = \"%@\", descCn = \"%@\", pic = \"%@\", creattime = \"%@\",  sound = \"%@\", userid = %d, userName = \"%@\", userImgUrl = \"%@\" WHERE voaid = %d and paraid = %d;", _title, _title_Cn, _descCn, _pic, _creatTime, _sound, _userid, _userName, _userImgUrl, _voaid, _paraid];
+//    NSLog(@"updateByVoaidSql:%@", findSql);
+    if([dataBase executeUpdate:findSql]) {
+        NSLog(@"--success!");
+    }
 }
 
 /**
@@ -352,6 +584,7 @@
 /**
  *  设置新闻已读
  */
+/*
 + (void) alterRead:(NSInteger)voaid
 {
     PLSqliteDatabase *dataBase = [database setup];
@@ -366,10 +599,12 @@
         }
     }
 }
+*/
 
 /**
  *  设置新闻听读数
  */
+/*
 + (void) alterReadCount:(NSInteger)voaid count:(NSInteger)count
 {
     PLSqliteDatabase *dataBase = [database setup];
@@ -384,9 +619,9 @@
         }
     }
 }
-
+*/
 /**
- *  获取新闻听读数
+ *
  */
 + (NSInteger) findReadCount:(NSInteger)voaid {
     PLSqliteDatabase *dataBase = [database setup];
@@ -424,6 +659,7 @@
 /**
  *  标记新闻正在下载
  */
+/*
 + (void) alterDownload:(NSInteger)voaid
 {
     PLSqliteDatabase *dataBase = [database setup];
@@ -434,10 +670,11 @@
         }
     }
 }
-
+*/
 /**
  *  根据voaid删除新闻
  */
+/*
 + (void) deleteByVoaid:(NSInteger)voaid {
 //    NSLog(@"删除标题-%d",voaid);
     PLSqliteDatabase *dataBase = [database setup];
@@ -448,10 +685,11 @@
         }
     }
 }
-
+*/
 /**
  *  消除指定voaid的新闻的已下载标记
  */
+/*
 + (void) clearDownload:(NSInteger)voaid
 {
     PLSqliteDatabase *dataBase = [database setup];
@@ -462,7 +700,7 @@
         }
     }
 }
-
+*/
 /**
  *  消除所有新闻的正在下载标记
  */
@@ -495,9 +733,9 @@
 }
 
 /**
- *  查询新闻是否存在
+ *  查询某天新闻是否存在
  */
-+ (BOOL) isExist:(NSInteger) voaid{
++ (BOOL) isVoaidExist: (NSInteger)voaid{
     PLSqliteDatabase *dataBase = [database setup];
     
 	id<PLResultSet> rs;
@@ -512,6 +750,26 @@
 	
 	[rs close];
 	return flg;	
+}
+
+/**
+ *  查询某篇新闻是否存在
+ */
++ (BOOL) isExist: (NSInteger)voaid paraid: (NSInteger)paraid{
+    PLSqliteDatabase *dataBase = [database setup];
+    
+	id<PLResultSet> rs;
+	NSString *findSql = [NSString stringWithFormat:@"select voaid FROM voa WHERE voaid = %d and paraid = %d", voaid, paraid];
+	rs = [dataBase executeQuery:findSql];
+	BOOL flg = NO;
+	if([rs next]) {
+        flg = YES;
+	}
+	else {
+	}
+	
+	[rs close];
+	return flg;
 }
 
 /**
@@ -586,501 +844,5 @@
     [rs close];
     return count;
 }
-
-
-/*
- + (NSArray *) findDateByCategory:(NSString *) category
- {
- PLSqliteDatabase *dataBase = [database setup];
- 
- id<PLResultSet> rs;
- rs = [dataBase executeQuery:[NSString stringWithFormat:@"SELECT distinct creattime FROM voa WHERE category = %@  ORDER BY CreatTime desc ", category]];
- 
- //定义一个数组存放所有信息
- NSMutableArray *dates = [[NSMutableArray alloc] init];
- 
- NSString *buffer = @"";
- 
- //把rs中的数据库信息遍历到voaViews数组
- while ([rs next]) {
- //        NSString *voaid = [rs objectForColumn:@"voaid"];
- //        NSString *title = [rs objectForColumn:@"title"];
- //        NSString *descCn = [rs objectForColumn:@"descCn"];
- //        NSString *descJp = [rs objectForColumn:@"descJp"];
- //        NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- //        NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- //        NSString *category = [rs objectForColumn:@"category"];
- //        NSString *sound = [rs objectForColumn:@"sound"];
- //        NSString *url = [rs objectForColumn:@"url"];
- //        NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- //        NSString *publishTime = [rs objectForColumn:@"publishTime"];
- //        NSString *readCount = [rs objectForColumn:@"readCount"];
- //        NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- //        NSString *title_cn = [rs objectForColumn:@"title_cn"];
- //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
- //		NSString *collect = [rs objectForColumn:@"collect"];
- 
- //        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg ];
- //        NSLog(@"%@", creatTime);
- //        NSString *regEx = @"{3}-[0-9]{3}-[0-9]{4}";
- NSString *regEx = @"[0-9]{4}-[0-9]{2}";
- //        for(NSString *matchOne in [creatTime componentsMatchedByRegex:regEx]) {
- //            NSLog(@"正则后one： %@", matchOne);
- //            [dates addObject:creatTime];
- //        }
- NSString *matchTwo = [creatTime stringByMatching:regEx];
- if ([buffer isEqualToString:matchTwo] == NO) {
- buffer = matchTwo;
- //            NSLog(@"正则后two： %@", matchTwo);
- [dates addObject:matchTwo];
- }
- 
- }
- //关闭数据库
- [rs close];
- //	[dataBase close];//
- return dates;
- 
- }*/
-
-/*
- + (NSArray *) findDate
- {
- PLSqliteDatabase *dataBase = [database setup];
- 
- id<PLResultSet> rs;
- rs = [dataBase executeQuery:@"SELECT distinct creattime FROM voa ORDER BY CreatTime desc "];
- 
- //定义一个数组存放所有信息
- NSMutableArray *dates = [[NSMutableArray alloc] init];
- 
- NSString *buffer = @"";
- 
- //把rs中的数据库信息遍历到voaViews数组
- while ([rs next]) {
- //        NSString *voaid = [rs objectForColumn:@"voaid"];
- //        NSString *title = [rs objectForColumn:@"title"];
- //        NSString *descCn = [rs objectForColumn:@"descCn"];
- //        NSString *descJp = [rs objectForColumn:@"descJp"];
- //        NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- //        NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- //        NSString *category = [rs objectForColumn:@"category"];
- //        NSString *sound = [rs objectForColumn:@"sound"];
- //        NSString *url = [rs objectForColumn:@"url"];
- //        NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- //        NSString *publishTime = [rs objectForColumn:@"publishTime"];
- //        NSString *readCount = [rs objectForColumn:@"readCount"];
- //        NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- //        NSString *title_cn = [rs objectForColumn:@"title_cn"];
- //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
- //		NSString *collect = [rs objectForColumn:@"collect"];
- 
- //        VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg ];
- //        NSLog(@"%@", creatTime);
- //        NSString *regEx = @"{3}-[0-9]{3}-[0-9]{4}";
- NSString *regEx = @"[0-9]{4}-[0-9]{2}";
- //        for(NSString *matchOne in [creatTime componentsMatchedByRegex:regEx]) {
- //            NSLog(@"正则后one： %@", matchOne);
- //            [dates addObject:creatTime];
- //        }
- NSString *matchTwo = [creatTime stringByMatching:regEx];
- if ([buffer isEqualToString:matchTwo] == NO) {
- buffer = matchTwo;
- //            NSLog(@"正则后two： %@", matchTwo);
- [dates addObject:matchTwo];
- }
- 
- }
- //关闭数据库
- [rs close];
- //	[dataBase close];//
- return dates;
- 
- }*/
-
-/*
- + (NSArray *) findByDate:(NSString *) Date
- {
- PLSqliteDatabase *dataBase = [database setup];
- //    const char *myVoaid = [voaid UTF8String];//NSString转变为字符数组
- //    int myVoaid = voaid.intValue;//NSString转变为整型
- id<PLResultSet> rs;
- NSString *findSql = [NSString stringWithFormat:@"select * FROM voa ORDER BY voaid desc "];
- rs = [dataBase executeQuery:findSql];
- NSMutableArray *voaViews = [[NSMutableArray alloc] init];
- NSString *regEx = @"[0-9]{4}-[0-9]{2}";
- while([rs next]) {
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *matchTwo = [creatTime stringByMatching:regEx];
- //        NSLog(@"正则后two： %@", matchTwo);
- 
- if ([matchTwo isEqualToString:Date]) {
- //            NSLog(@"--->正则后two： %@", matchTwo);
- NSInteger voaid = [rs intForColumn:@"voaid"];
- NSString *title = [rs objectForColumn:@"title"];
- NSString *descCn = [rs objectForColumn:@"descCn"];
- NSString *descJp = [rs objectForColumn:@"descJp"];
- NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- NSString *category = [rs objectForColumn:@"category"];
- NSString *sound = [rs objectForColumn:@"sound"];
- NSString *url = [rs objectForColumn:@"url"];
- NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *publishTime = [rs objectForColumn:@"publishTime"];
- NSString *readCount = [rs objectForColumn:@"readCount"];
- NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- NSString *isRead = [rs objectForColumn:@"isRead"];
- VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg isRead:isRead];
- [voaViews addObject:voaView];
- 
- [voaView release];  
- }
- 
- }
- 
- [rs close];
- //	[dataBase close];//
- return voaViews;	
- 
- }*/
-
-/*
- + (NSInteger) findNumberByDate:(NSString *) Date
- {
- PLSqliteDatabase *dataBase = [database setup];
- id<PLResultSet> rs;
- NSInteger number = 0;
- NSString *findSql = [NSString stringWithFormat:@"select * FROM voa ORDER BY voaid desc "];
- rs = [dataBase executeQuery:findSql];
- NSString *regEx = @"[0-9]{4}-[0-9]{2}";
- while([rs next]) {
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *matchTwo = [creatTime stringByMatching:regEx];
- if ([matchTwo isEqualToString:Date]) {
- number++;
- }
- }
- [rs close];
- return number;
- }*/
-
-/*
- + (NSArray *) findAll{
- PLSqliteDatabase *dataBase = [database setup];
- 
- id<PLResultSet> rs;
- rs = [dataBase executeQuery:@"SELECT * FROM voa ORDER BY voaid desc "];
- 
- //定义一个数组存放所有信息
- NSMutableArray *voaViews = [[NSMutableArray alloc] init];
- 
- //把rs中的数据库信息遍历到voaViews数组
- while ([rs next]) {
- NSInteger voaid = [rs intForColumn:@"voaid"];
- NSString *title = [rs objectForColumn:@"title"];
- NSString *descCn = [rs objectForColumn:@"descCn"];
- NSString *descJp = [rs objectForColumn:@"descJp"];
- NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- NSString *category = [rs objectForColumn:@"category"];
- NSString *sound = [rs objectForColumn:@"sound"];
- NSString *url = [rs objectForColumn:@"url"];
- NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *publishTime = [rs objectForColumn:@"publishTime"];
- NSString *readCount = [rs objectForColumn:@"readCount"];
- NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- NSString *isRead = [rs objectForColumn:@"isRead"];
- //        NSString *title_cn = [rs objectForColumn:@"title_cn"];
- //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
- //		NSString *collect = [rs objectForColumn:@"collect"];
- 
- VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg isRead:isRead];
- [voaViews addObject:voaView];
- 
- [voaView release];  
- }
- //关闭数据库
- [rs close];
- //	[dataBase close];//
- return voaViews;
- }*/
-
-/*
- + (NSArray *) findAfterByCategory:(NSInteger)voaid
- {
- PLSqliteDatabase *dataBase = [database setup];
- 
- id<PLResultSet> rs;
- NSString *findSql = [NSString stringWithFormat:@"select * from voa where voaid <%d ORDER BY voaid desc ",voaid];
- rs = [dataBase executeQuery:findSql];
- //    NSLog(@"sql:%@",findSql);
- 
- 
- //定义一个数组存放所有信息
- NSMutableArray *voaViews = [[NSMutableArray alloc] init];
- 
- //把rs中的数据库信息遍历到voaViews数组
- while ([rs next]) {
- NSInteger voaid = [rs intForColumn:@"voaid"];
- NSString *title = [rs objectForColumn:@"title"];
- NSString *descCn = [rs objectForColumn:@"descCn"];
- NSString *descJp = [rs objectForColumn:@"descJp"];
- NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- NSString *category = [rs objectForColumn:@"category"];
- NSString *sound = [rs objectForColumn:@"sound"];
- NSString *url = [rs objectForColumn:@"url"];
- NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *publishTime = [rs objectForColumn:@"publishTime"];
- NSString *readCount = [rs objectForColumn:@"readCount"];
- NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- NSString *isRead = [rs objectForColumn:@"isRead"];
- //        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
- //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
- //		NSString *collect = [rs objectForColumn:@"collect"];
- 
- VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg isRead:isRead];
- [voaViews addObject:voaView];
- 
- [voaView release];  
- }
- //关闭数据库
- [rs close];
- //	[dataBase close];//
- return voaViews;
- }*/
-
-/*
- + (NSArray *) findVoaBetween:(NSInteger)max mix:(NSInteger)mix
- {
- PLSqliteDatabase *dataBase = [database setup];
- //	NSLog(@"%d %d",max,mix);
- id<PLResultSet> rs;
- NSString *findSql = [NSString stringWithFormat:@"select * from voa where voaid>%d and voaid <=%d ORDER BY voaid desc ",mix,max];
- rs = [dataBase executeQuery:findSql];
- //    NSLog(@"sql:%@",findSql);
- 
- 
- //定义一个数组存放所有信息
- NSMutableArray *voaViews = [[NSMutableArray alloc] init];
- 
- //把rs中的数据库信息遍历到voaViews数组
- while ([rs next]) {
- NSInteger voaid = [rs intForColumn:@"voaid"];
- NSString *title = [rs objectForColumn:@"title"];
- NSString *descCn = [rs objectForColumn:@"descCn"];
- NSString *descJp = [rs objectForColumn:@"descJp"];
- NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- NSString *category = [rs objectForColumn:@"category"];
- NSString *sound = [rs objectForColumn:@"sound"];
- NSString *url = [rs objectForColumn:@"url"];
- NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *publishTime = [rs objectForColumn:@"publishTime"];
- NSString *readCount = [rs objectForColumn:@"readCount"];
- NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- NSString *isRead = [rs objectForColumn:@"isRead"];
- //        NSString *title_cn = [rs objectForColumn:@"Title_cn"];
- //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
- //		NSString *collect = [rs objectForColumn:@"collect"];
- 
- VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg isRead:isRead];
- [voaViews addObject:voaView];
- 
- [voaView release];  
- }
- //关闭数据库
- [rs close];
- //	[dataBase close];//
- return voaViews;
- }*/
-/*
- + (NSArray *) findByCategory:(NSString *) category{
- PLSqliteDatabase *dataBase = [database setup];
- 
- id<PLResultSet> rs;
- //    const char *mycategory = [category UTF8String];//NSString转变为字符数组
- NSString *findSql = [NSString stringWithFormat:@"select * FROM voa WHERE category = %@ order by voaid desc", category           ];
- //    NSString *findSql = [NSString stringWithFormat:@"select voaid to_char(creattime, 'yyyy-MM-dd') y_time from voaview order by y_time ; ", mycategory];
- 
- rs = [dataBase executeQuery:findSql];
- 
- NSMutableArray *voaViews = [[NSMutableArray alloc] init];
- 
- while([rs next]) {
- NSInteger voaid = [rs intForColumn:@"voaid"];
- NSString *title = [rs objectForColumn:@"title"];
- NSString *descCn = [rs objectForColumn:@"descCn"];
- NSString *descJp = [rs objectForColumn:@"descJp"];
- NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- NSString *category = [rs objectForColumn:@"category"];
- NSString *sound = [rs objectForColumn:@"sound"];
- NSString *url = [rs objectForColumn:@"url"];
- NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *publishTime = [rs objectForColumn:@"publishTime"];
- NSString *readCount = [rs objectForColumn:@"readCount"];
- NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- NSString *isRead = [rs objectForColumn:@"isRead"];
- //        NSString *title_cn = [rs objectForColumn:@"title_cn"];
- //        NSString *title_jp = [rs objectForColumn:@"title_jp"];
- //        NSString *collect = [rs objectForColumn:@"collect"];
- 
- VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg isRead:isRead];	
- [voaViews addObject:voaView];
- 
- [voaView release];  
- 
- }
- 
- [rs close];
- //	[dataBase close];//
- return voaViews;	
- }
- 
- + (NSArray *) findByCategoryDate:(NSString *) Date category:(NSString *) category
- {
- PLSqliteDatabase *dataBase = [database setup];
- //    const char *myVoaid = [voaid UTF8String];//NSString转变为字符数组
- //    int myVoaid = voaid.intValue;//NSString转变为整型
- id<PLResultSet> rs;
- NSString *findSql = [NSString stringWithFormat:@"select * FROM voa WHERE category = %@ order by voaid desc", category];
- rs = [dataBase executeQuery:findSql];
- NSMutableArray *voaViews = [[NSMutableArray alloc] init];
- NSString *regEx = @"[0-9]{4}-[0-9]{2}";
- while([rs next]) {
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *matchTwo = [creatTime stringByMatching:regEx];
- //        NSLog(@"正则后two： %@", matchTwo);
- 
- if ([matchTwo isEqualToString:Date]) {
- //            NSLog(@"--->正则后two： %@", matchTwo);
- NSInteger voaid = [rs intForColumn:@"voaid"];
- NSString *title = [rs objectForColumn:@"title"];
- NSString *descCn = [rs objectForColumn:@"descCn"];
- NSString *descJp = [rs objectForColumn:@"descJp"];
- NSString *title_Cn = [rs objectForColumn:@"title_Cn"];
- NSString *title_Jp = [rs objectForColumn:@"title_Jp"];
- NSString *category = [rs objectForColumn:@"category"];
- NSString *sound = [rs objectForColumn:@"sound"];
- NSString *url = [rs objectForColumn:@"url"];
- NSString *pic = [rs objectForColumn:@"pic"];
- NSString *creatTime = [rs objectForColumn:@"creatTime"];
- NSString *publishTime = [rs objectForColumn:@"publishTime"];
- NSString *readCount = [rs objectForColumn:@"readCount"];
- NSString *hotFlg = [rs objectForColumn:@"hotFlg"];
- NSString *isRead = [rs objectForColumn:@"isRead"];
- VOAView *voaView = [[VOAView alloc] initWithVoaId:voaid title:title descCn:descCn descJp:descJp title_Cn:title_Cn title_Jp:title_Jp category:category sound:sound url:url pic:pic creatTime:creatTime publishTime:publishTime readcount:readCount hotFlg:hotFlg isRead:isRead];
- [voaViews addObject:voaView];
- 
- [voaView release];  
- }
- 
- }
- 
- [rs close];
- //	[dataBase close];//
- return voaViews;	
- 
- }*/
-/*
- + (BOOL) isTitleSimilar:(NSInteger) voaid search:(NSString *) search
- {
- PLSqliteDatabase *dataBase = [database setup];
- id<PLResultSet> rs;
- NSString *nowSearch = [[NSString alloc] initWithFormat:@"\"%%%@%%\"", search];
- //    NSLog(@"%@", nowSearch);
- NSString *findSql = [NSString stringWithFormat:@"select voaid FROM voa WHERE title like %@;", voaid, nowSearch];
- //    NSLog(@"%@", findSql);
- rs = [dataBase executeQuery:findSql];
- if ([rs next]) {
- //        NSString *sentence = [rs objectForColumn:@"sentence"];
- //        NSLog(@"%@", sentence);
- [rs close];
- return YES;
- }	
- 
- return NO;	
- }*/
-//+ (NSArray *) QuickSort:(NSArray *) voaContents left:(NSInteger) left right:(NSInteger) right
-//{
-//    NSInteger i = left;
-//    NSInteger j = right;
-//    NSInteger middle = 0;
-//    NSInteger iTemp = 0;
-//    NSLog(@"%d", (left+right)/2);
-//    middle = [[voaContents objectAtIndex:(left+right)/2] _number];//求中间值
-//    do {
-//        while (([[voaContents objectAtIndex:i] _number]<middle)&&(i<right)) {
-//            i++;
-//        }
-//        while (([[voaContents objectAtIndex:j] _number]>middle)&&(j>left)) {
-//            j--;
-//        }
-//        if(i<=j){
-//            iTemp = [[voaContents objectAtIndex:i] _number];
-//            [[voaContents objectAtIndex:j] set_number:[[voaContents objectAtIndex:i] _number]];
-//            [[voaContents objectAtIndex:i] set_number:iTemp];
-//            i++;
-//            j--;
-//        }
-//    } while (i<=j);
-//    if(left<j){
-//        [self QuickSort:voaContents left:left right:j];
-//    }
-//    //当右边部分有值（right>i），递归右半边
-//    if(right>i){
-//        [self QuickSort:voaContents left:i right:right];
-//    }
-//}
-//　　int main()
-//　　{
-//    　　int data[]={10,9,8,7,6,5,4};
-//    　　const int count(6);
-//    　　QuickSort(data,0,count);
-//    　　for(int i(0);i!=7;++i){
-//        　　cout<<data[i]<<；“ ”<<flush;
-//        　　}
-//    　　cout<<endl;
-//    　　return 0;
-//    　　}
-
-/*
- + (NSArray *) findSimilar:(NSArray *) voasArray search:(NSString *) search 
- {
- 
- NSMutableArray *voaContents = [[NSMutableArray alloc] init];
- //    voaContents = nil;
- VOAView *voa =[VOAView alloc];
- NSInteger number = 0;
- NSInteger titleNum = 0;
- for ( voa in voasArray) {
- //        NSLog(@"%d", voa._voaid);
- //		[voasArray addObject:voa];
- if ([self isSimilar:voa._voaid search:search]) {
- NSString *content = [self getContent:voa._voaid search:search];
- NSString *titleCon = [self getTitleContent:voa._voaid search:search];
- //            NSLog(@"%@", content);
- number = [self numberOfMatch:content search:search];
- titleNum = [self numberOfMatch:titleCon search:search];
- VOAContent *voaContent = [[VOAContent alloc] initWithVoaId:voa._voaid content:content title:[voa _title] creattime:[voa _creatTime] pic:[voa _pic] number:number titleNum:titleNum];
- [voaContents addObject:voaContent];
- [voaContent release], voaContent = nil;
- }
- }
- [voa release];
- [voaContents sortUsingSelector:@selector(compareNumber:)];//对数组进行排序 
- return voaContents;
- //    return [self QuickSort:voaContents left:0 right:([voaContents count]-1)];
- //    NSTimer *myTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(setProgress:) userInfo: repeats:<#(BOOL)#>]
- //    
- }*/
 
 @end

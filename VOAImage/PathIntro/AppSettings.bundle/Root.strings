@@ -1,0 +1,66 @@
+/* 
+  Root.strings
+  VOAImage
+
+  Created by 赵松 on 13-7-31.
+  Copyright (c) 2013年 Dmitry Kondratyev. All rights reserved.
+*/
+"d1"             = "VOA官方指定，最畅销英语学习基础工具。";
+"s1"             = "https://itunes.apple.com/us/app/ai-yu-bavoa-ying-yu-ban-lu/id519013738?ls=1&mt=8";
+"t1"             = "VOA慢速英语";
+"i1"             = "iconSpFr";
+
+"d2"             = "VOA官方指定，英语进阶最佳工具。";
+"s2"             = "https://itunes.apple.com/us/app/ai-yu-bavoa-chang-su-ying-yu/id553414030?ls=1&mt=8";
+"t2"             = "VOA常速英语";
+"i2"             = "iconNorFr";
+
+"d3"             = "看视频学英语。全屏、转屏、中英，让你英语随心学。";
+"s3"             = "https://itunes.apple.com/us/app/ai-yu-bavoa-ying-yu-shi-pin/id586521067?ls=1&mt=8";
+"t3"             = "VOA视频英语";
+"i3"             = "iconVdFr";
+
+"d4"             = "每周一期，轻松搞怪学地道英语。";
+"s4"             = "https://itunes.apple.com/us/app/mei-yu-zen-me-shuo-shi-ting/id584717854?ls=1&mt=8";
+"t4"             = "VOA美语怎么说";
+"i4"             = "iconAEHFr";
+
+"d5"             = "最受欢迎的英语应用，让你爱上学英语。";
+"s5"             = "https://itunes.apple.com/us/app/ai-yu-ba-ting-ge-xue-ying/id598946101?ls=1&mt=8";
+"t5"             = "听歌学英语";
+"i5"             = "iconLycFr";
+
+"d6"             = "历年英语四级考试听力真题，四级通关必备。";
+"s6"             = "https://itunes.apple.com/us/app/ying-yu-liu-ji-ting-lifree/id529453528?ls=1&mt=8";
+"t6"             = "英语四级听力";
+"i6"             = "IconCET4Free-57";
+
+"d7"             = "历年英语六级考试听力真题，六级通关必备。";
+"s7"             = "https://itunes.apple.com/us/app/ri-yu1ji-ting-lifree/id542281757?ls=1&mt=8";
+"t7"             = "英语六级听力";
+"i7"             = "IconCET6Free-57";
+
+"d8"             = "高品质TOEIC听力软件，TOEIC考试完美助手。";
+"s8"             = "https://itunes.apple.com/us/app/ri-yu2ji-ting-lifree/id542283126?ls=1&mt=8";
+"t8"             = "托业考试听力";
+"i8"             = "TOEIC";
+
+"d9"             = "在游戏的过程中学习外语和生活常识。";
+"s9"             = "https://itunes.apple.com/us/app/ying-yu-si-ji-ting-lifree/id529455490?ls=1&mt=8";
+"t9"             = "智慧球";
+"i9"             = "Bright_Ball";
+
+"d10"             = "学习日语好帮手。";
+"s10"             = "https://itunes.apple.com/us/app/ri-yu3ji-ting-lifree/id542283933?ls=1&mt=8";
+"t10"             = "日语1级听力";
+"i10"             = "JLPT1_Free";
+
+"d11"             = "学习日语好帮手。";
+"s11"             = "https://itunes.apple.com/us/app/toeichiaringu-700dian-ofurainbajon/id569041823?ls=1&mt=8";
+"t11"             = "日语2级听力";
+"i11"             = "JLPT2_Free";
+
+"d12"             = "学习日语好帮手。";
+"s12"             = "https://itunes.apple.com/cn/app/zhi-hui-qiu-wan-ju-ying-yu/id590220714?mt=8";
+"t12"             = "日语3级听力";
+"i12"             = "JLPT3_Free";

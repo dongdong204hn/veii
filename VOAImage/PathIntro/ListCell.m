@@ -10,8 +10,10 @@
 
 @implementation ListCell
 @synthesize imgOne;
-@synthesize imgTwo;
-@synthesize imgThree;
+@synthesize timeLabel;
+@synthesize descView;
+//@synthesize imgTwo;
+//@synthesize imgThree;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

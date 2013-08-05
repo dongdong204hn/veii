@@ -42,6 +42,8 @@ NSString * const kFeedbackFour = @"您还没有连接网络";
 NSString * const kFeedbackFive = @"确定";
 NSString * const kFeedbacksix = @"发送";
 NSString * const kFeedbackSeven = @"请勿重复提交";
+NSString * const kFeedback8 = @"反馈内容不能为空";
+NSString * const kFeedback9 = @"请填写有效的邮箱";
 
 NSString * const kHelpOne = @"使用帮助";
 
@@ -83,6 +85,7 @@ NSString * const kRegThirte = @"用户名已存在";
 NSString * const kRegFourte = @"邮箱已注册";
 NSString * const kRegFivete= @"用户名长度错误";
 NSString * const kRegSixte= @"提交";
+NSString * const kReg17= @"请检查您输入的信息";
 
 NSString * const kColOne = @"对本地新闻进行搜索";
 NSString * const kColTwo = @"本地";
@@ -200,6 +203,8 @@ NSString * const kDisinfFive = @"分";
 NSString * const kDisinfSix = @"今日开始统计";
 NSString * const kDisinfSeven = @"进入文章";
 
+NSString * const kExample1 = @"本地尚无此新闻,请联网后再查看!";
+NSString * const kExample2 = @"请勿重复评价!";
 
 NSMutableArray *downLoadList;//下载队列的全局变量，用于“下次再说”功能
 //ASIHTTPRequest *nowrequest;//正在下载的全局变量，用于给cell的progress赋值

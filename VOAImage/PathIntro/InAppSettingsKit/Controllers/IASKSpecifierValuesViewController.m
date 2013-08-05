@@ -109,6 +109,10 @@
 //    [super dealloc];
 }
 
+- (IBAction) didBackBtnPressed:(id)sender {
+//    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark -
 #pragma mark UITableView delegates

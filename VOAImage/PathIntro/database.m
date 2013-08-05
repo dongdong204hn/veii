@@ -26,7 +26,6 @@ static PLSqliteDatabase * dbPointer;
     return result == 0;
 }
 
-/*
 + (PLSqliteDatabase *) setup{
 	
 	if (dbPointer) {
@@ -36,14 +35,22 @@ static PLSqliteDatabase * dbPointer;
 	
 	NSLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
 	NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSString *realPath = [documentPath stringByAppendingPathComponent:@"mydatabase.sqlite"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //创建audio份目录在Documents文件夹下，not to back up
+	NSString *audioPath = [documentPath stringByAppendingPathComponent:[NSString stringWithFormat:@"audio"]];
+	if ([fileManager fileExistsAtPath:audioPath] == NO) {
+		[fileManager createDirectoryAtPath:audioPath withIntermediateDirectories:YES attributes:nil error:nil];
+		if ([self addSkipBackupAttributeToItemAtURL:[NSURL URLWithString:audioPath]] == YES) {
+            //			NSLog(@"succes!");
+		}
+	}
+	NSString *realPath = [audioPath stringByAppendingPathComponent:@"mydatabase.sqlite"];
     NSLog(@"realPath:%@",realPath);
 	
 	NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"voadata" ofType:@"sqlite"];
 	
 	NSLog(@"sourcePath:%@",sourcePath);
 	
-	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if (![fileManager fileExistsAtPath:realPath]) {
 		NSError *error;
 		if (![fileManager copyItemAtPath:sourcePath toPath:realPath error:&error]) {
@@ -61,25 +68,25 @@ static PLSqliteDatabase * dbPointer;
 	};
 	
 	return dbPointer;
-}*/
-
-+ (PLSqliteDatabase *) setup{
-	
-	if (dbPointer) {
-		return dbPointer;
-	}
-	
-    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"voadata" ofType:@"sqlite"];
-	
-    //	把dbpointer地址修改为可修改的realPath。
-	dbPointer = [[PLSqliteDatabase alloc] initWithPath:sourcePath];
-	
-	if ([dbPointer open]) {
-        //		NSLog(@"open fav succeed!");
-	};
-    
-	return dbPointer;
 }
+
+//+ (PLSqliteDatabase *) setup{
+//	
+//	if (dbPointer) {
+//		return dbPointer;
+//	}
+//	
+//    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"voadata" ofType:@"sqlite"];
+//	
+//    //	把dbpointer地址修改为可修改的realPath。
+//	dbPointer = [[PLSqliteDatabase alloc] initWithPath:sourcePath];
+//	
+//	if ([dbPointer open]) {
+//        //		NSLog(@"open fav succeed!");
+//	};
+//    
+//	return dbPointer;
+//}
 
 
 

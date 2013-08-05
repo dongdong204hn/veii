@@ -43,4 +43,11 @@
     }
 }
 
+- (IBAction)didIyubaBtnPressed:(id)sender
+{
+    if ([myDelegate respondsToSelector:@selector(didIyubaBtnPressed:)]) {
+        [myDelegate didIyubaBtnPressed:self];
+    }
+}
+
 @end

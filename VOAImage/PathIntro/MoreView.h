@@ -13,14 +13,21 @@
 @protocol MoreViewDelegate <NSObject>
 @optional
 - (void)didSettingBtnPressed;
+- (void)didFeedbackBtnPressed;
+- (void)didAccountBtnPressed;
 @end
 
-@interface MoreView : UIScrollView
+@interface MoreView : UIScrollView {
+    NSArray *appArray;
+    NSDictionary *appDescDic;
+}
 
 @property (nonatomic, strong) IBOutlet UIButton* backBtn;
+@property (nonatomic, strong) IBOutlet UITableView* appTable;
 @property (nonatomic, assign) id <MoreViewDelegate> myDelegate;
 
 
 - (IBAction)didSettingBtnPressed:(id)sender;
+- (IBAction)didFeedbackBtnPressed:(id)sender;
 
 @end

@@ -11,7 +11,10 @@
 @interface ListCell : UITableViewCell
 
 @property (nonatomic,strong) IBOutlet UIImageView *imgOne;
-@property (nonatomic,strong) IBOutlet UIImageView *imgTwo;
-@property (nonatomic,strong) IBOutlet UIImageView *imgThree;
+@property (nonatomic,strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic,strong) IBOutlet UITextView *descView;
+
+//@property (nonatomic,strong) IBOutlet UIImageView *imgTwo;
+//@property (nonatomic,strong) IBOutlet UIImageView *imgThree;
 
 @end

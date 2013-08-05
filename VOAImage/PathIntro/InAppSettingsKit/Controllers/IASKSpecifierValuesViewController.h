@@ -35,4 +35,6 @@
 @property (nonatomic, retain) IASKSettingsReader *settingsReader;
 @property (nonatomic, retain) id<IASKSettingsStore> settingsStore;
 
+- (IBAction) didBackBtnPressed:(id)sender;
+
 @end

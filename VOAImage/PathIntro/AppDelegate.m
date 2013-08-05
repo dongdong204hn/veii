@@ -5,9 +5,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    kNetTest;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[ExampleViewController alloc] init];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ExampleViewController alloc] init]];
+    nav.navigationBarHidden = YES;
+    self.window.rootViewController = nav;
+//    self.window.rootViewController = [[ExampleViewController alloc] init];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"] == nil) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:1] forKey:@"firstLaunch"]; //应用打开次数置1
+        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"shakeChange"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"imgAutoScroll"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:15] forKey:@"mulValueFont"]; //字体大小15
+    }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
